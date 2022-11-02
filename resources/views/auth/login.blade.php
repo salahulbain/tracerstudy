@@ -54,13 +54,5 @@
                 </x-primary-button>
             </div>
         </form>
-        <hr class="mt-6">
-        <div class="text-center mt-4 text-slate-600">
-            &copy;
-            <br>
-            {{ date('Y',time()) }}
-            <br>
-            Powered by: Salahul Bain
-        </div>
     </x-auth-card>
 </x-guest-layout>
