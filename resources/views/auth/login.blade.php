@@ -27,7 +27,7 @@
                 <x-input-label for="password" :value="__('Password')" />
 
                 <div class="relative">
-                    <x-text-input id="password" class="block mt-1 w-full" type="password" required
+                    <x-text-input id="password" class="block mt-1 w-full" name="password" type="password" required
                         autocomplete="current-password" placeholder="Input Password" />
                     <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
 
