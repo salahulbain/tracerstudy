@@ -50,6 +50,26 @@
                     </a>
                 </li>
 
+                <li class="sidebar-title">Tracer Study</li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-person-fill"></i>
+                        <span>Data Mahasiswa</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-file-earmark-text-fill"></i>
+                        <span>Isi Kuisioner</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a href="#" class="sidebar-link">
+                        <i class="bi bi-printer-fill"></i>
+                        <span>Cetak Hasil</span>
+                    </a>
+                </li>
+
                 <li class="sidebar-title">Account</li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
@@ -69,7 +89,7 @@
         </div>
     </div>
 </div>
-<!-- Modal -->
+<!-- Modal logout -->
 <div class="modal fade" id="logOutModal" tabindex="-1" aria-labelledby="logOutModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
