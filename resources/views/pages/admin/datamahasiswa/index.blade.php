@@ -16,13 +16,18 @@
             {{-- table data mahasiswa jika user admin --}}
             @if (Auth::user()->role == 'ADMIN')
             <div class="card shadow">
-                <div class="card-header">
-                    {{-- --}}
+                <div class="card-header text-center">
+                    <button type="button" class="btn btn-primary m-1">
+                        <i class="bi bi-person-plus"></i> Tambah Data Mahasiswa
+                    </button>
+                    <button type="button" class="btn btn-success m-1">
+                        <i class="bi bi-filetype-csv"></i> Import Data Mahasiswa
+                    </button>
                 </div>
                 <div class="card-body">
                     {{-- tabel mahasiswa jika user admin --}}
                     <div class="table-responsive">
-                        <table class="table table-bordered mb-0">
+                        <table class="table table-bordered mb-0" id="table">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -140,6 +145,7 @@
                                     </td>
                                 </tr>
                             </tbody>
+                            <tfoot></tfoot>
                         </table>
                     </div>
                 </div>
@@ -224,3 +230,21 @@
     </section>
 </div>
 @endsection
+
+@push('addon-after-style')
+<link rel="stylesheet" href="{{ asset('assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') }}" />
+<link rel="stylesheet" href="{{ asset('assets/css/pages/datatables.css') }}" />
+@endpush
+
+@push('addon-before-script')
+<script src="{{ asset('assets/extensions/jquery/jquery.min.js') }}"></script>
+@endpush
+
+@push('addon-after-script')
+<script src="https://cdn.datatables.net/v/bs5/dt-1.12.1/datatables.min.js"></script>
+<script>
+    $(document).ready(function(){
+        $("#table").DataTable();
+    });
+</script>
+@endpush
