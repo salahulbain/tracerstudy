@@ -45,11 +45,11 @@
                                             <i class="badge-circle badge-circle-light-secondary font-medium-1"
                                                 data-feather="eye"></i></a>
                                         <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                            <i class="badge-circle badge-circle-light-secondary text-warning font-medium-1"
                                                 data-feather="edit"></i>
                                         </a>
                                         <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
-                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                            <i class="badge-circle badge-circle-light-secondary text-danger font-medium-1"
                                                 data-feather="trash-2"></i>
                                         </a>
                                     </td>
@@ -66,11 +66,11 @@
                                                 data-feather="eye"></i>
                                         </a>
                                         <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                            <i class="badge-circle badge-circle-light-secondary text-warning font-medium-1"
                                                 data-feather="edit"></i>
                                         </a>
                                         <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
-                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                            <i class="badge-circle badge-circle-light-secondary text-danger font-medium-1"
                                                 data-feather="trash-2"></i>
                                         </a>
                                     </td>
@@ -87,11 +87,11 @@
                                                 data-feather="eye"></i>
                                         </a>
                                         <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                            <i class="badge-circle badge-circle-light-secondary text-warning font-medium-1"
                                                 data-feather="edit"></i>
                                         </a>
                                         <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
-                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                            <i class="badge-circle badge-circle-light-secondary text-danger font-medium-1"
                                                 data-feather="trash-2"></i>
                                         </a>
 
@@ -109,11 +109,11 @@
                                                 data-feather="eye"></i>
                                         </a>
                                         <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                            <i class="badge-circle badge-circle-light-secondary text-warning font-medium-1"
                                                 data-feather="edit"></i>
                                         </a>
                                         <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
-                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                            <i class="badge-circle badge-circle-light-secondary text-danger font-medium-1"
                                                 data-feather="trash-2"></i>
                                         </a>
                                     </td>
@@ -130,11 +130,11 @@
                                                 data-feather="eye"></i>
                                         </a>
                                         <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
-                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                            <i class="badge-circle badge-circle-light-secondary text-warning font-medium-1"
                                                 data-feather="edit"></i>
                                         </a>
                                         <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
-                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                            <i class="badge-circle badge-circle-light-secondary text-danger font-medium-1"
                                                 data-feather="trash-2"></i>
                                         </a>
                                     </td>
