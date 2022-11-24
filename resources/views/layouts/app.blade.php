@@ -19,7 +19,7 @@
     </div>
     @stack('addon-before-script')
     @include('includes.script')
-    @stack('addon-before-script')
+    @stack('addon-after-script')
 </body>
 
 </html>
