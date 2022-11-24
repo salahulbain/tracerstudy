@@ -41,12 +41,17 @@
                                     <td>Remote</td>
                                     <td>Austin,Taxes</td>
                                     <td>
-                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i
-                                                class="badge-circle badge-circle-light-secondary font-medium-1"
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
                                                 data-feather="eye"></i></a>
-                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i
-                                                class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                data-feather="edit"></i></a>
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                data-feather="edit"></i>
+                                        </a>
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                data-feather="trash-2"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -56,12 +61,18 @@
                                     <td>Remote</td>
                                     <td>Shangai,China</td>
                                     <td>
-                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i
-                                                class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                data-feather="eye"></i></a>
-                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i
-                                                class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                data-feather="edit"></i></a>
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                data-feather="eye"></i>
+                                        </a>
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                data-feather="edit"></i>
+                                        </a>
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                data-feather="trash-2"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -71,12 +82,19 @@
                                     <td>Remote</td>
                                     <td>Austin,Texas</td>
                                     <td>
-                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i
-                                                class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                data-feather="eye"></i></a>
-                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i
-                                                class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                data-feather="edit"></i></a>
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                data-feather="eye"></i>
+                                        </a>
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                data-feather="edit"></i>
+                                        </a>
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                data-feather="trash-2"></i>
+                                        </a>
+
                                     </td>
                                 </tr>
                                 <tr>
@@ -86,12 +104,18 @@
                                     <td>Remote</td>
                                     <td>Austin,Texas</td>
                                     <td>
-                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i
-                                                class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                data-feather="eye"></i></a>
-                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i
-                                                class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                data-feather="edit"></i></a>
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                data-feather="eye"></i>
+                                        </a>
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                data-feather="edit"></i>
+                                        </a>
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                data-feather="trash-2"></i>
+                                        </a>
                                     </td>
                                 </tr>
                                 <tr>
@@ -101,12 +125,18 @@
                                     <td>Remote</td>
                                     <td>Austin,Texas</td>
                                     <td>
-                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i
-                                                class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                data-feather="eye"></i></a>
-                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i
-                                                class="badge-circle badge-circle-light-secondary font-medium-1"
-                                                data-feather="edit"></i></a>
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="View">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                data-feather="eye"></i>
+                                        </a>
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                data-feather="edit"></i>
+                                        </a>
+                                        <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus">
+                                            <i class="badge-circle badge-circle-light-secondary font-medium-1"
+                                                data-feather="trash-2"></i>
+                                        </a>
                                     </td>
                                 </tr>
                             </tbody>
