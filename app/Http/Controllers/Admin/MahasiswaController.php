@@ -5,9 +5,15 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\DataMahasiswa;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class MahasiswaController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin')->only(['show','create','edit','destroy']);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -25,7 +31,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -36,7 +42,16 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //jika user ADMIN
+        if(Auth::user()->role == 'ADMIN'){
+            // 
+        }
+        // jika user USER
+        elseif(Auth::user()->role == 'USER'){
+            // 
+        }else{
+            abort(403,'you do not have permission ! <a href="'.route('admin').'">Go Back</a>');
+        }
     }
 
     /**
@@ -47,7 +62,7 @@ class MahasiswaController extends Controller
      */
     public function show(DataMahasiswa $dataMahasiswa)
     {
-        //
+        // 
     }
 
     /**
@@ -58,7 +73,7 @@ class MahasiswaController extends Controller
      */
     public function edit(DataMahasiswa $dataMahasiswa)
     {
-        //
+        // 
     }
 
     /**
@@ -70,7 +85,16 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, DataMahasiswa $dataMahasiswa)
     {
-        //
+        //jika user ADMIN
+        if(Auth::user()->role == 'ADMIN'){
+            // 
+        }
+        // jika user USER
+        elseif(Auth::user()->role == 'USER'){
+            // 
+        }else{
+            abort(403,'you do not have permission ! <a href="'.route('admin').'">Go Back</a>');
+        }
     }
 
     /**
@@ -81,6 +105,6 @@ class MahasiswaController extends Controller
      */
     public function destroy(DataMahasiswa $dataMahasiswa)
     {
-        //
+        // 
     }
 }
