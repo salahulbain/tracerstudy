@@ -28,9 +28,9 @@ class MahasiswaController extends Controller
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
-                    $btn = '<a href="' . route('mahasiswa.edit', $row->id) . '" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="edit"></i>edit</a>';
-                    $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.show', $row->id) . '" data-title="Detail Data Mahasiswa"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="eye"></i>lihat</a>';
-                    $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.destroy', $row->id) . '" data-title="Yakin ingin menghapus ?"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="trash-2"></i>hapus</a>';
+                    $btn = '<a href="' . route('mahasiswa.edit', $row->id) . '" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="bi bi-pencil-square p-1 text-warning"></i></a>';
+                    $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.show', $row->id) . '" data-title="Detail Data Mahasiswa"><i class="bi bi-eye p-1"></i></a>';
+                    $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.destroy', $row->id) . '" data-title="Yakin ingin menghapus ?"><i class="bi bi-trash-fill p-1 text-danger"></i></a>';
                     return $btn;
                 })
                 ->rawColumns(['action'])
