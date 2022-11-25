@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DataMahasiswa;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use DataTables;
 
 class MahasiswaController extends Controller
 {
@@ -19,8 +20,22 @@ class MahasiswaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        if ($request->ajax()) {
+            // note: add select('tabel.*') untuk menghindari abigu id saat ada relasi di eager yajra datatable
+            $data = DataMahasiswa::query();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->addColumn('action', function ($row) {
+                    $btn = '<a href="' . route('mahasiswa.edit', $row->id) . '" data-bs-toggle="tooltip" data-bs-placement="top" title="View"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="edit"></i>edit</a>';
+                    $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.show', $row->id) . '" data-title="Detail Data Mahasiswa"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="eye"></i>lihat</a>';
+                    $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.destroy', $row->id) . '" data-title="Yakin ingin menghapus ?"><i class="badge-circle badge-circle-light-secondary font-medium-1" data-feather="trash-2"></i>hapus</a>';
+                    return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
+        }
         return view('pages.admin.datamahasiswa.index');
     }
 
