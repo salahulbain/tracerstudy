@@ -22,21 +22,29 @@ class MahasiswaController extends Controller
      */
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-            // note: add select('tabel.*') untuk menghindari abigu id saat ada relasi di eager yajra datatable
-            $data = DataMahasiswa::query();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $btn = '<a href="' . route('mahasiswa.edit', $row->id) . '" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="bi bi-pencil-square p-1 text-warning"></i></a>';
-                    $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.show', $row->id) . '" data-title="Detail Data Mahasiswa"><i class="bi bi-eye p-1"></i></a>';
-                    $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.destroy', $row->id) . '" data-title="Yakin ingin menghapus ?"><i class="bi bi-trash-fill p-1 text-danger"></i></a>';
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+        // jika user admin ambil semua data mahasiswa load ke datatable
+        if(Auth::user()->role == "ADMIN"){
+            if ($request->ajax()) {
+                // note: add select('tabel.*') untuk menghindari abigu id saat ada relasi di eager yajra datatable
+                $data = DataMahasiswa::query();
+                return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function ($row) {
+                        $btn = '<a href="' . route('mahasiswa.edit', $row->id) . '" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="bi bi-pencil-square p-1 text-warning"></i></a>';
+                        $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.show', $row->id) . '" data-title="Detail Data Mahasiswa"><i class="bi bi-eye p-1"></i></a>';
+                        $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.destroy', $row->id) . '" data-title="Yakin ingin menghapus ?"><i class="bi bi-trash-fill p-1 text-danger"></i></a>';
+                        return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
+            }
+            return view('pages.admin.datamahasiswa.index');
         }
-        return view('pages.admin.datamahasiswa.index');
+        // jika user Mahasiswa ambil satu data
+        if(Auth::user()->role == "USER"){
+            $item = DataMahasiswa::where('id',Auth::user()->user_id)->first();
+            return view('pages.admin.datamahasiswa.index',compact('item'));
+        }
     }
 
     /**
@@ -106,7 +114,35 @@ class MahasiswaController extends Controller
         }
         // jika user USER
         elseif(Auth::user()->role == 'USER'){
-            // 
+            $request->validate([
+                'nama_mahasiswa' => 'required',
+                'tempat_lahir'   => 'required',
+                'tanggal_lahir'  => 'required',
+                'nik'            => 'required|numeric|digits:16',
+            ],[
+                'required' => ':attribute tidak boleh kosong',
+                'numeric'  => ':attribute wajib berupa angka',
+                'digits'   => ':attribute wajib berjumlah 16 angka',
+            ]);
+            if($request->npwp){
+                $request->validate([
+                    'npwp' => 'numeric',
+                ],[
+                    'numeric'  => ':attribute wajib berupa angka',
+                ]);
+            }
+            $dataMahasiswa = DataMahasiswa::findOrFail(Auth::user()->user_id);
+            $dataMahasiswa->nama_mahasiswa = $request->nama_mahasiswa;
+            $dataMahasiswa->tempat_lahir = $request->tempat_lahir;
+            $dataMahasiswa->tanggal_lahir = $request->tanggal_lahir;
+            $dataMahasiswa->nik = $request->nik;
+            $dataMahasiswa->alamat = $request->alamat;
+            if($request->npwp){
+                $dataMahasiswa->npwp = $request->npwp;
+            }
+            $dataMahasiswa->save();
+
+            return redirect()->route('mahasiswa.index')->with('success','Data berhasil disimpan');
         }else{
             abort(403,'you do not have permission ! <a href="'.route('admin').'">Go Back</a>');
         }
