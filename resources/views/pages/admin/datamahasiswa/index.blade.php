@@ -17,9 +17,9 @@
             @if (Auth::user()->role == 'ADMIN')
             <div class="card shadow">
                 <div class="card-header text-center">
-                    <button type="button" class="btn btn-primary m-1">
+                    <a href="{{ route('mahasiswa.create') }}" class="btn btn-primary m-1">
                         <i class="bi bi-person-plus"></i> Tambah Data Mahasiswa
-                    </button>
+                    </a>
                     <button type="button" class="btn btn-success m-1" data-bs-toggle="modal"
                         data-bs-target="#dataMahasiswaModal">
                         <i class="bi bi-filetype-csv"></i> Import Data Mahasiswa
@@ -65,25 +65,12 @@
                             </div>
                         </div>
                     </div>
-                    {{-- <div class="toast show align-items-center text-white bg-success border-0" role="alert"
-                        aria-live="assertive" aria-atomic="true" data-bs-delay="5000" data-bs-autohide="true"
-                        data-bs-animation="true">
-                        <div class="d-flex">
-                            <div class="toast-body">
-                                <i class="bi bi-check-circle"></i>
-                                {{ $message }}.
-                            </div>
-                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                                aria-label="Close"></button>
-                        </div>
-                    </div> --}}
                 </div>
                 @endif
                 <div class="card-header">
                     <h4>Bioadata Mahasiswa</h4>
                 </div>
-                <form action="{{ route('mahasiswa.update',Auth::user()->user_id) }}" method="POST"
-                    enctype="multipart/form-data">
+                <form action="{{ route('mahasiswa.update',Auth::user()->user_id) }}" method="POST">
                     <div class="card-body">
                         @csrf
                         @method('PUT')
