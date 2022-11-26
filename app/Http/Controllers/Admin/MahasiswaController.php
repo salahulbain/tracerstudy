@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\DataMahasiswa;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DataTables;
@@ -12,7 +13,7 @@ class MahasiswaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->only(['show','create','edit','destroy']);
+        $this->middleware('admin')->only(['show','create','edit','destroy','store']);
     }
 
     /**
@@ -54,7 +55,7 @@ class MahasiswaController extends Controller
      */
     public function create()
     {
-        // 
+        return view('pages.admin.datamahasiswa.create');
     }
 
     /**
@@ -65,16 +66,7 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        //jika user ADMIN
-        if(Auth::user()->role == 'ADMIN'){
-            // 
-        }
-        // jika user USER
-        elseif(Auth::user()->role == 'USER'){
-            // 
-        }else{
-            abort(403,'you do not have permission ! <a href="'.route('admin').'">Go Back</a>');
-        }
+        dd($request->all());
     }
 
     /**
@@ -132,19 +124,25 @@ class MahasiswaController extends Controller
                 ]);
             }
             $dataMahasiswa = DataMahasiswa::findOrFail(Auth::user()->user_id);
+            $datauser = User::where('user_id',Auth::user()->user_id)->first();
             $dataMahasiswa->nama_mahasiswa = $request->nama_mahasiswa;
+            $datauser->name = $request->nama_mahasiswa;
             $dataMahasiswa->tempat_lahir = $request->tempat_lahir;
             $dataMahasiswa->tanggal_lahir = $request->tanggal_lahir;
             $dataMahasiswa->nik = $request->nik;
+            $dataMahasiswa->no_hp = $request->no_hp;
+            $dataMahasiswa->email = $request->email;
+            $datauser->email = $request->email;
             $dataMahasiswa->alamat = $request->alamat;
             if($request->npwp){
                 $dataMahasiswa->npwp = $request->npwp;
             }
             $dataMahasiswa->save();
+            $datauser->save();
 
             return redirect()->route('mahasiswa.index')->with('success','Data berhasil disimpan');
         }else{
-            abort(403,'you do not have permission ! <a href="'.route('admin').'">Go Back</a>');
+            abort(403);
         }
     }
 
