@@ -222,8 +222,11 @@ class MahasiswaController extends Controller
      * @param  \App\Models\DataMahasiswa  $dataMahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function destroy(DataMahasiswa $dataMahasiswa)
+    public function destroy(DataMahasiswa $dataMahasiswa, $id)
     {
-        dd($dataMahasiswa);
+        $dataMahasiswa = DataMahasiswa::findOrFail($id);
+        $dataMahasiswa->delete();
+
+        return redirect()->route('mahasiswa.index')->with('success','Data mahasiswa berhasil dihapus');
     }
 }
