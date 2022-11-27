@@ -75,7 +75,7 @@ class MahasiswaController extends Controller
             'no_hp'          => 'required',
             'email'          => 'required|email|unique:users,email|unique:data_mahasiswas,email,NULL,id,deleted_at,NULL',
             'tahun_lulus'    => 'required',
-            'nik'            => 'required|numeric|digits:16|unique:data_mahasiswas,nik',
+            'nik'            => 'required|numeric|digits:16|unique:data_mahasiswas,nik,NULL,id,deleted_at,NULL',
         ],[
             'required' => ':attribute tidak boleh kosong',
             'numeric'  => ':attribute wajib berupa angka',
@@ -122,7 +122,7 @@ class MahasiswaController extends Controller
             'avatar'   => 'default.svg',
         ]);
 
-        return redirect()->route('mahasiswa.index')->with(['success'=>'Data mahasiswa berhasil ditambah','info'=>'gunakan npm untuk username & password']);
+        return redirect()->route('mahasiswa.index')->with(['success'=>'Data mahasiswa berhasil ditambah','info'=>'Data mahasiswa berhasil ditambah, gunakan npm untuk username & password']);
     }
 
     /**
@@ -156,11 +156,61 @@ class MahasiswaController extends Controller
      * @param  \App\Models\DataMahasiswa  $dataMahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, DataMahasiswa $dataMahasiswa)
+    public function update(Request $request, DataMahasiswa $dataMahasiswa, $id)
     {
         //jika user ADMIN
         if(Auth::user()->role == 'ADMIN'){
-            // 
+            $request->validate([
+                'kode_pt'        => 'required|numeric',
+                'kode_prodi'     => 'required|numeric',
+                'npm'            => 'required|numeric|unique:users,username|unique:data_mahasiswas,npm,NULL,id,deleted_at,NULL',
+                'nama_mahasiswa' => 'required',
+                'no_hp'          => 'required',
+                'email'          => 'required|email|unique:users,email|unique:data_mahasiswas,email,NULL,id,deleted_at,NULL',
+                'tahun_lulus'    => 'required',
+                'nik'            => 'required|numeric|digits:16|unique:data_mahasiswas,nik,NULL,id,deleted_at,NULL',
+            ],[
+                'required' => ':attribute tidak boleh kosong',
+                'numeric'  => ':attribute wajib berupa angka',
+                'digits'   => ':attribute wajib berjumlah 16 angka',
+                'unique'   => ':attribute sudah terdaftar',
+            ]);
+            if($request->npwp){
+                $request->validate([
+                    'npwp' => 'numeric',
+                ],[
+                    'numeric'  => ':attribute wajib berupa angka',
+                ]);
+            }
+            if($request->no_hp){
+                $request->validate([
+                    'no_hp' => 'numeric',
+                ],[
+                    'numeric'  => ':attribute wajib berupa angka',
+                ]);
+            }
+
+        $dataMahasiswa = DataMahasiswa::findOrFail($id);
+        $datauser = User::where('user_id',$id)->first();
+        $dataMahasiswa->kode_pt = $request->kode_pt;
+        $dataMahasiswa->kode_prodi = $request->kode_prodi;
+        $dataMahasiswa->npm = $request->npm;
+        $datauser->username = $request->npm;
+        $dataMahasiswa->nama_mahasiswa = $request->nama_mahasiswa;
+        $dataMahasiswa->no_hp = $request->no_hp;
+        $dataMahasiswa->email = $request->email;
+        $datauser->email = $request->email;
+        $dataMahasiswa->tahun_lulus = $request->tahun_lulus;
+        $dataMahasiswa->nik = $request->nik;
+        $dataMahasiswa->npwp = $request->npwp;
+        $dataMahasiswa->tempat_lahir = $request->tempat_lahir;
+        $dataMahasiswa->tanggal_lahir = $request->tanggal_lahir;
+        $dataMahasiswa->alamat = $request->alamat;
+        $dataMahasiswa->save();
+        $datauser->save();
+
+        return redirect()->route('mahasiswa.index')->with('success','Data mahasiswa berhasil diubah');
+
         }
         // jika user USER
         elseif(Auth::user()->role == 'USER'){

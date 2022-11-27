@@ -17,10 +17,10 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('kode_pt');
             $table->bigInteger('kode_prodi');
-            $table->bigInteger('npm')->unique();
+            $table->bigInteger('npm');
             $table->string('nama_mahasiswa');
             $table->string('no_hp');
-            $table->string('email')->unique();
+            $table->string('email');
             $table->integer('tahun_lulus');
             $table->bigInteger('nik');
             $table->bigInteger('npwp')->nullable();
