@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DataTables;
+use Illuminate\Support\Facades\Hash;
 
 class MahasiswaController extends Controller
 {
@@ -32,8 +33,8 @@ class MahasiswaController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function ($row) {
                         $btn = '<a href="' . route('mahasiswa.edit', $row->id) . '" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="bi bi-pencil-square p-1 text-warning"></i></a>';
-                        $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="tooltip" data-bs-placement="top" title="View" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.show', $row->id) . '" data-title="Detail Data Mahasiswa"><i class="bi bi-eye p-1"></i></a>';
-                        $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="tooltip" data-bs-placement="top" title="Hapus" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.destroy', $row->id) . '" data-title="Yakin ingin menghapus ?"><i class="bi bi-trash-fill p-1 text-danger"></i></a>';
+                        $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.show', $row->id) . '" data-title="Detail Data Mahasiswa"><i class="bi bi-eye p-1"></i></a>';
+                        $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.delete', $row->id) . '" data-title="Yakin ingin menghapus ?"><i class="bi bi-trash-fill p-1 text-danger"></i></a>';
                         return $btn;
                     })
                     ->rawColumns(['action'])
@@ -66,7 +67,62 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->all());
+        $request->validate([
+            'kode_pt'        => 'required|numeric',
+            'kode_prodi'     => 'required|numeric',
+            'npm'            => 'required|numeric|unique:users,username|unique:data_mahasiswas,npm,NULL,id,deleted_at,NULL',
+            'nama_mahasiswa' => 'required',
+            'no_hp'          => 'required',
+            'email'          => 'required|email|unique:users,email|unique:data_mahasiswas,email,NULL,id,deleted_at,NULL',
+            'tahun_lulus'    => 'required',
+            'nik'            => 'required|numeric|digits:16|unique:data_mahasiswas,nik',
+        ],[
+            'required' => ':attribute tidak boleh kosong',
+            'numeric'  => ':attribute wajib berupa angka',
+            'digits'   => ':attribute wajib berjumlah 16 angka',
+            'unique'   => ':attribute sudah terdaftar',
+        ]);
+        if($request->npwp){
+            $request->validate([
+                'npwp' => 'numeric',
+            ],[
+                'numeric'  => ':attribute wajib berupa angka',
+            ]);
+        }
+        if($request->no_hp){
+            $request->validate([
+                'no_hp' => 'numeric',
+            ],[
+                'numeric'  => ':attribute wajib berupa angka',
+            ]);
+        }
+
+        $dataMHS = DataMahasiswa::create([
+            'kode_pt'        => $request->kode_pt,
+            'kode_prodi'     => $request->kode_prodi,
+            'npm'            => $request->npm,
+            'nama_mahasiswa' => $request->nama_mahasiswa,
+            'no_hp'          => $request->no_hp,
+            'email'          => $request->email,
+            'tahun_lulus'    => $request->tahun_lulus,
+            'nik'            => $request->nik,
+            'npwp'           => $request->npwp,
+            'tempat_lahir'   => $request->tempat_lahir,
+            'tanggal_lahir'  => $request->tanggal_lahir,
+            'alamat'         => $request->alamat,
+        ]);
+
+        User::create ([
+            'name'     => $request->nama_mahasiswa,
+            'username' => $request->npm,
+            'email'    => $request->email,
+            'password' => Hash::make($request->npm),
+            'user_id'  => $dataMHS->id,
+            'role'     => 'USER',
+            'avatar'   => 'default.svg',
+        ]);
+
+        return redirect()->route('mahasiswa.index')->with(['success'=>'Data mahasiswa berhasil ditambah','info'=>'gunakan npm untuk username & password']);
     }
 
     /**
@@ -75,9 +131,10 @@ class MahasiswaController extends Controller
      * @param  \App\Models\DataMahasiswa  $dataMahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function show(DataMahasiswa $dataMahasiswa)
+    public function show(DataMahasiswa $dataMahasiswa, $id)
     {
-        // 
+        $item = DataMahasiswa::findOrFail($id);
+        return view('pages.admin.datamahasiswa.show',compact('item'));
     }
 
     /**
@@ -86,9 +143,10 @@ class MahasiswaController extends Controller
      * @param  \App\Models\DataMahasiswa  $dataMahasiswa
      * @return \Illuminate\Http\Response
      */
-    public function edit(DataMahasiswa $dataMahasiswa)
+    public function edit(DataMahasiswa $dataMahasiswa, $id)
     {
-        // 
+        $item = DataMahasiswa::findOrFail($id);
+        return view('pages.admin.datamahasiswa.edit',compact('item')); 
     }
 
     /**
@@ -147,6 +205,18 @@ class MahasiswaController extends Controller
     }
 
     /**
+     * Show the form for deleting the specified resource.
+     *
+     * @param  \App\Models\DataMahasiswa  $dataMahasiswa
+     * @return \Illuminate\Http\Response
+     */
+    public function delete(DataMahasiswa $dataMahasiswa, $id)
+    {
+        $item = DataMahasiswa::findOrFail($id);
+        return view('pages.admin.datamahasiswa.delete',compact('item')); 
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\DataMahasiswa  $dataMahasiswa
@@ -154,6 +224,6 @@ class MahasiswaController extends Controller
      */
     public function destroy(DataMahasiswa $dataMahasiswa)
     {
-        // 
+        dd($dataMahasiswa);
     }
 }

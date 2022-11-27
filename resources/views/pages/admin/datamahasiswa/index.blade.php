@@ -13,6 +13,40 @@
 <div class="page-content">
     <section class="row" style="min-height: 80vh;">
         <div class="col-12">
+            @if ($message = Session::get('success'))
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+                <div class="toast show fade align-items-center text-bg-success border-0" role="alert" aria-live="polite"
+                    aria-atomic="true">
+                    <div role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                <i class="bi bi-check-circle m-1"></i>
+                                {{ $message }}.
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                                aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
+            @if ($message = Session::get('info'))
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+                <div class="toast show fade align-items-center text-bg-success border-0" role="alert" aria-live="polite"
+                    aria-atomic="true">
+                    <div role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                <i class="bi bi-check-circle m-1"></i>
+                                {{ $message }}.
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                                aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
             {{-- table data mahasiswa jika user admin --}}
             @if (Auth::user()->role == 'ADMIN')
             <div class="card shadow">
@@ -50,23 +84,6 @@
             {{-- data mahasiswa jika user mahasiswa --}}
             @if (Auth::user()->role == 'USER')
             <div class="card shadow">
-                @if ($message = Session::get('success'))
-                <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
-                    <div class="toast show fade align-items-center text-bg-success border-0" role="alert"
-                        aria-live="polite" aria-atomic="true">
-                        <div role="alert" aria-live="assertive" aria-atomic="true">
-                            <div class="d-flex">
-                                <div class="toast-body">
-                                    <i class="bi bi-check-circle m-1"></i>
-                                    {{ $message }}.
-                                </div>
-                                <button type="button" class="btn-close btn-close-white me-2 m-auto"
-                                    data-bs-dismiss="toast" aria-label="Close"></button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                @endif
                 <div class="card-header">
                     <h4>Bioadata Mahasiswa</h4>
                 </div>
@@ -216,7 +233,7 @@
 <!-- Modal data mahasiswa -->
 <div class="modal fade" id="dataMahasiswaModal" tabindex="-1" aria-labelledby="dataMahasiswaModalLabel"
     aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
                 <h1 class="modal-title fs-5" id="dataMahasiswaModalLabel"></h1>
@@ -224,10 +241,6 @@
             </div>
             <div class="modal-body">
             </div>
-            {{-- <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="submit" class="btn btn-danger">Upload</button>
-            </div> --}}
         </div>
     </div>
 </div>
@@ -238,14 +251,24 @@
 <script src="{{ asset('assets/extensions/jquery/jquery.min.js') }}"></script>
 @endpush
 
-@if (Auth::user()->role == "USER")
+@if(Session::get('success'))
+@push('addon-after-script')
 <script>
-    @if(Session::get('success'))
     setInterval(() => {
-        $('.toast').toast('hide');
-    }, 2500);
-    @endif
+            $('.toast').toast('hide');
+        }, 2500);
 </script>
+@endpush
+@endif
+
+@if(Session::get('info'))
+@push('addon-after-script')
+<script>
+    setInterval(() => {
+            $('.toast').toast('hide');
+        }, 2500);
+</script>
+@endpush
 @endif
 
 @if (Auth::user()->role == "ADMIN")

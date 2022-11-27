@@ -21,6 +21,7 @@ Route::get('/', function () {
 
 Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
+    Route::get('/mahasiswa/delete/{id}',[MahasiswaController::class,'delete'])->name('mahasiswa.delete');
     Route::resources([
         'mahasiswa'=> MahasiswaController::class,
     ]);

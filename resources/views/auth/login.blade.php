@@ -14,9 +14,9 @@
 
             <!-- Email Address -->
             <div>
-                <x-input-label for="email" :value="__('Username')" />
+                <x-input-label for="login" :value="__('Username')" />
 
-                <x-text-input id="email" class="block mt-1 w-full" type="text" name="email" :value="old('email')"
+                <x-text-input id="login" class="block mt-1 w-full" type="text" name="login" :value="old('login')"
                     placeholder="Input username anda" required />
 
                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
