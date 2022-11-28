@@ -55,9 +55,12 @@
                         <i class="bi bi-person-plus"></i> Tambah Data Mahasiswa
                     </a>
                     <button type="button" class="btn btn-success m-1" data-bs-toggle="modal"
-                        data-bs-target="#dataMahasiswaModal">
+                        data-bs-target="#ImportDataMHS">
                         <i class="bi bi-filetype-csv"></i> Import Data Mahasiswa
                     </button>
+                    <a href="{{ route('mahasiswa.export') }}" class="btn btn-info m-1">
+                        <i class="bi bi-filetype-exe"></i> Export Data Mahasiswa
+                    </a>
                 </div>
                 <div class="card-body">
                     {{-- tabel mahasiswa jika user admin --}}
@@ -241,6 +244,43 @@
             </div>
             <div class="modal-body">
             </div>
+        </div>
+    </div>
+</div>
+<!-- Modal data mahasiswa -->
+<div class="modal fade" id="ImportDataMHS" tabindex="-1" aria-labelledby="ImportDataMHSLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="ImportDataMHSLabel">Import Data Mahasiswa</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('mahasiswa.import') }}" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <a href="{{ asset('import/template_upload_data_mhs.csv') }}" class="btn btn-link"><i
+                                    class="bi bi-filetype-csv mx-1"></i> Download Format Import
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12">
+                            @csrf
+                            <div class="form-group">
+                                <label for="data_mahasiswa">Upload File CSV</label>
+                                <input type="file" accept=".csv" class="form-control" id="data_mahasiswa" required
+                                    name="data_mahasiswa" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary float-right" data-bs-dismiss="modal"
+                        aria-label="Close">Batal</button>
+                    <button type="submit" class="btn btn-success float-right">Upload Data Mahasiswa</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

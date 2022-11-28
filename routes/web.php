@@ -22,6 +22,8 @@ Route::get('/', function () {
 Route::prefix('admin')->middleware(['auth'])->group(function(){
     Route::get('/',[DashboardController::class,'index'])->name('dashboard');
     Route::get('/mahasiswa/delete/{id}',[MahasiswaController::class,'delete'])->name('mahasiswa.delete');
+    Route::get('/mahasiswa/export', [MahasiswaController::class, 'export'])->name('mahasiswa.export');
+    Route::post('/mahasiswa/import', [MahasiswaController::class, 'import'])->name('mahasiswa.import');
     Route::resources([
         'mahasiswa'=> MahasiswaController::class,
     ]);

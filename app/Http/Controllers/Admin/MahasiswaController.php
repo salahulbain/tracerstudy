@@ -2,13 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Exports\DataMahasiswaExport;
 use App\Http\Controllers\Controller;
+use App\Imports\DataMahasiswaImport;
 use App\Models\DataMahasiswa;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DataTables;
 use Illuminate\Support\Facades\Hash;
+use Maatwebsite\Excel\Facades\Excel;
 
 class MahasiswaController extends Controller
 {
@@ -123,6 +126,23 @@ class MahasiswaController extends Controller
         ]);
 
         return redirect()->route('mahasiswa.index')->with(['success'=>'Data mahasiswa berhasil ditambah','info'=>'Data mahasiswa berhasil ditambah, gunakan npm untuk username & password']);
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function import() 
+    {
+        Excel::import(new DataMahasiswaImport,request()->file('data_mahasiswa'));
+        return back();
+    }
+
+    /**
+     * @return \Illuminate\Support\Collection
+     */
+    public function export() 
+    {
+        return Excel::download(new DataMahasiswaExport, 'Data_Mahasiswa.xlsx');
     }
 
     /**
@@ -275,7 +295,9 @@ class MahasiswaController extends Controller
     public function destroy(DataMahasiswa $dataMahasiswa, $id)
     {
         $dataMahasiswa = DataMahasiswa::findOrFail($id);
+        $dataUser      = User::where('user_id',$id)->first();
         $dataMahasiswa->delete();
+        $dataUser->delete();
 
         return redirect()->route('mahasiswa.index')->with('success','Data mahasiswa berhasil dihapus');
     }
