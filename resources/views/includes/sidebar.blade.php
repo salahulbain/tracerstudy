@@ -4,7 +4,8 @@
             <div class="d-flex justify-content-between align-items-center">
                 <div class="logo">
                     <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('assets/images/logo/logoiaia.png') }}" alt="Logo" srcset="" />
+                        <img style="height: 4rem;" src="{{ asset('assets/images/logo/logoiaia.png') }}" alt="Logo"
+                            srcset="" />
                     </a>
                 </div>
                 <div class="theme-toggle d-flex gap-2 align-items-center mt-2">
