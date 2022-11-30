@@ -60,8 +60,8 @@
                         <span>Data Mahasiswa</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                <li class="sidebar-item {{ Request::is('admin/kuisioner*') ? 'active':'' }}">
+                    <a href="{{ route('kuisioner.index') }}" class="sidebar-link">
                         <i class="bi bi-file-earmark-text-fill"></i>
                         <span>Isi Kuisioner</span>
                     </a>
