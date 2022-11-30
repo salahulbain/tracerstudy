@@ -10,14 +10,16 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DataTables;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Maatwebsite\Excel\Facades\Excel;
+use PhpParser\Node\Stmt\Return_;
 
 class MahasiswaController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->only(['show','create','edit','destroy','store']);
+        $this->middleware('admin')->only(['show', 'create', 'edit', 'destroy', 'store', 'import', 'export']);
     }
 
     /**
@@ -28,7 +30,7 @@ class MahasiswaController extends Controller
     public function index(Request $request)
     {
         // jika user admin ambil semua data mahasiswa load ke datatable
-        if(Auth::user()->role == "ADMIN"){
+        if (Auth::user()->role == "ADMIN") {
             if ($request->ajax()) {
                 // note: add select('tabel.*') untuk menghindari abigu id saat ada relasi di eager yajra datatable
                 $data = DataMahasiswa::query();
@@ -46,9 +48,9 @@ class MahasiswaController extends Controller
             return view('pages.admin.datamahasiswa.index');
         }
         // jika user Mahasiswa ambil satu data
-        if(Auth::user()->role == "USER"){
-            $item = DataMahasiswa::where('id',Auth::user()->user_id)->first();
-            return view('pages.admin.datamahasiswa.index',compact('item'));
+        if (Auth::user()->role == "USER") {
+            $item = DataMahasiswa::where('id', Auth::user()->user_id)->first();
+            return view('pages.admin.datamahasiswa.index', compact('item'));
         }
     }
 
@@ -79,23 +81,23 @@ class MahasiswaController extends Controller
             'email'          => 'required|email|unique:users,email|unique:data_mahasiswas,email,NULL,id,deleted_at,NULL',
             'tahun_lulus'    => 'required',
             'nik'            => 'required|numeric|digits:16|unique:data_mahasiswas,nik,NULL,id,deleted_at,NULL',
-        ],[
+        ], [
             'required' => ':attribute tidak boleh kosong',
             'numeric'  => ':attribute wajib berupa angka',
             'digits'   => ':attribute wajib berjumlah 16 angka',
             'unique'   => ':attribute sudah terdaftar',
         ]);
-        if($request->npwp){
+        if ($request->npwp) {
             $request->validate([
                 'npwp' => 'numeric',
-            ],[
+            ], [
                 'numeric'  => ':attribute wajib berupa angka',
             ]);
         }
-        if($request->no_hp){
+        if ($request->no_hp) {
             $request->validate([
                 'no_hp' => 'numeric',
-            ],[
+            ], [
                 'numeric'  => ':attribute wajib berupa angka',
             ]);
         }
@@ -115,7 +117,7 @@ class MahasiswaController extends Controller
             'alamat'         => $request->alamat,
         ]);
 
-        User::create ([
+        User::create([
             'name'     => $request->nama_mahasiswa,
             'username' => $request->npm,
             'email'    => $request->email,
@@ -125,24 +127,28 @@ class MahasiswaController extends Controller
             'avatar'   => 'default.svg',
         ]);
 
-        return redirect()->route('mahasiswa.index')->with(['success'=>'Data mahasiswa berhasil ditambah','info'=>'Data mahasiswa berhasil ditambah, gunakan npm untuk username & password']);
+        return redirect()->route('mahasiswa.index')->with(['success' => 'Data mahasiswa berhasil ditambah', 'info' => 'Data mahasiswa berhasil ditambah, gunakan npm untuk username & password']);
     }
 
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function import() 
+    public function import()
     {
-        Excel::import(new DataMahasiswaImport,request()->file('data_mahasiswa'));
+        Excel::import(new DataMahasiswaImport, request()->file('data_mahasiswa'));
         return back();
     }
 
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function export() 
+    public function export()
     {
-        return Excel::download(new DataMahasiswaExport, 'Data_Mahasiswa.xlsx');
+        $data = DB::table('data_mahasiswas')->where('deleted_at', null)->count();
+        if (!$data == null)
+            return Excel::download(new DataMahasiswaExport, 'Data_Mahasiswa.xlsx');
+        else
+            return redirect()->route('mahasiswa.index')->with('error', 'Data mahasiswa kosong');
     }
 
     /**
@@ -154,7 +160,7 @@ class MahasiswaController extends Controller
     public function show(DataMahasiswa $dataMahasiswa, $id)
     {
         $item = DataMahasiswa::findOrFail($id);
-        return view('pages.admin.datamahasiswa.show',compact('item'));
+        return view('pages.admin.datamahasiswa.show', compact('item'));
     }
 
     /**
@@ -166,7 +172,7 @@ class MahasiswaController extends Controller
     public function edit(DataMahasiswa $dataMahasiswa, $id)
     {
         $item = DataMahasiswa::findOrFail($id);
-        return view('pages.admin.datamahasiswa.edit',compact('item')); 
+        return view('pages.admin.datamahasiswa.edit', compact('item'));
     }
 
     /**
@@ -179,7 +185,7 @@ class MahasiswaController extends Controller
     public function update(Request $request, DataMahasiswa $dataMahasiswa, $id)
     {
         //jika user ADMIN
-        if(Auth::user()->role == 'ADMIN'){
+        if (Auth::user()->role == 'ADMIN') {
             $request->validate([
                 'kode_pt'        => 'required|numeric',
                 'kode_prodi'     => 'required|numeric',
@@ -189,70 +195,69 @@ class MahasiswaController extends Controller
                 'email'          => 'required|email|unique:users,email|unique:data_mahasiswas,email,NULL,id,deleted_at,NULL',
                 'tahun_lulus'    => 'required',
                 'nik'            => 'required|numeric|digits:16|unique:data_mahasiswas,nik,NULL,id,deleted_at,NULL',
-            ],[
+            ], [
                 'required' => ':attribute tidak boleh kosong',
                 'numeric'  => ':attribute wajib berupa angka',
                 'digits'   => ':attribute wajib berjumlah 16 angka',
                 'unique'   => ':attribute sudah terdaftar',
             ]);
-            if($request->npwp){
+            if ($request->npwp) {
                 $request->validate([
                     'npwp' => 'numeric',
-                ],[
+                ], [
                     'numeric'  => ':attribute wajib berupa angka',
                 ]);
             }
-            if($request->no_hp){
+            if ($request->no_hp) {
                 $request->validate([
                     'no_hp' => 'numeric',
-                ],[
+                ], [
                     'numeric'  => ':attribute wajib berupa angka',
                 ]);
             }
 
-        $dataMahasiswa = DataMahasiswa::findOrFail($id);
-        $datauser = User::where('user_id',$id)->first();
-        $dataMahasiswa->kode_pt = $request->kode_pt;
-        $dataMahasiswa->kode_prodi = $request->kode_prodi;
-        $dataMahasiswa->npm = $request->npm;
-        $datauser->username = $request->npm;
-        $dataMahasiswa->nama_mahasiswa = $request->nama_mahasiswa;
-        $dataMahasiswa->no_hp = $request->no_hp;
-        $dataMahasiswa->email = $request->email;
-        $datauser->email = $request->email;
-        $dataMahasiswa->tahun_lulus = $request->tahun_lulus;
-        $dataMahasiswa->nik = $request->nik;
-        $dataMahasiswa->npwp = $request->npwp;
-        $dataMahasiswa->tempat_lahir = $request->tempat_lahir;
-        $dataMahasiswa->tanggal_lahir = $request->tanggal_lahir;
-        $dataMahasiswa->alamat = $request->alamat;
-        $dataMahasiswa->save();
-        $datauser->save();
+            $dataMahasiswa = DataMahasiswa::findOrFail($id);
+            $datauser = User::where('user_id', $id)->first();
+            $dataMahasiswa->kode_pt = $request->kode_pt;
+            $dataMahasiswa->kode_prodi = $request->kode_prodi;
+            $dataMahasiswa->npm = $request->npm;
+            $datauser->username = $request->npm;
+            $dataMahasiswa->nama_mahasiswa = $request->nama_mahasiswa;
+            $dataMahasiswa->no_hp = $request->no_hp;
+            $dataMahasiswa->email = $request->email;
+            $datauser->email = $request->email;
+            $dataMahasiswa->tahun_lulus = $request->tahun_lulus;
+            $dataMahasiswa->nik = $request->nik;
+            $dataMahasiswa->npwp = $request->npwp;
+            $dataMahasiswa->tempat_lahir = $request->tempat_lahir;
+            $dataMahasiswa->tanggal_lahir = $request->tanggal_lahir;
+            $dataMahasiswa->alamat = $request->alamat;
+            $dataMahasiswa->save();
+            $datauser->save();
 
-        return redirect()->route('mahasiswa.index')->with('success','Data mahasiswa berhasil diubah');
-
+            return redirect()->route('mahasiswa.index')->with('success', 'Data mahasiswa berhasil diubah');
         }
         // jika user USER
-        elseif(Auth::user()->role == 'USER'){
+        elseif (Auth::user()->role == 'USER') {
             $request->validate([
                 'nama_mahasiswa' => 'required',
                 'tempat_lahir'   => 'required',
                 'tanggal_lahir'  => 'required',
                 'nik'            => 'required|numeric|digits:16',
-            ],[
+            ], [
                 'required' => ':attribute tidak boleh kosong',
                 'numeric'  => ':attribute wajib berupa angka',
                 'digits'   => ':attribute wajib berjumlah 16 angka',
             ]);
-            if($request->npwp){
+            if ($request->npwp) {
                 $request->validate([
                     'npwp' => 'numeric',
-                ],[
+                ], [
                     'numeric'  => ':attribute wajib berupa angka',
                 ]);
             }
             $dataMahasiswa = DataMahasiswa::findOrFail(Auth::user()->user_id);
-            $datauser = User::where('user_id',Auth::user()->user_id)->first();
+            $datauser = User::where('user_id', Auth::user()->user_id)->first();
             $dataMahasiswa->nama_mahasiswa = $request->nama_mahasiswa;
             $datauser->name = $request->nama_mahasiswa;
             $dataMahasiswa->tempat_lahir = $request->tempat_lahir;
@@ -262,14 +267,14 @@ class MahasiswaController extends Controller
             $dataMahasiswa->email = $request->email;
             $datauser->email = $request->email;
             $dataMahasiswa->alamat = $request->alamat;
-            if($request->npwp){
+            if ($request->npwp) {
                 $dataMahasiswa->npwp = $request->npwp;
             }
             $dataMahasiswa->save();
             $datauser->save();
 
-            return redirect()->route('mahasiswa.index')->with('success','Data berhasil disimpan');
-        }else{
+            return redirect()->route('mahasiswa.index')->with('success', 'Data berhasil disimpan');
+        } else {
             abort(403);
         }
     }
@@ -283,7 +288,7 @@ class MahasiswaController extends Controller
     public function delete(DataMahasiswa $dataMahasiswa, $id)
     {
         $item = DataMahasiswa::findOrFail($id);
-        return view('pages.admin.datamahasiswa.delete',compact('item')); 
+        return view('pages.admin.datamahasiswa.delete', compact('item'));
     }
 
     /**
@@ -295,10 +300,10 @@ class MahasiswaController extends Controller
     public function destroy(DataMahasiswa $dataMahasiswa, $id)
     {
         $dataMahasiswa = DataMahasiswa::findOrFail($id);
-        $dataUser      = User::where('user_id',$id)->first();
+        $dataUser      = User::where('user_id', $id)->first();
         $dataMahasiswa->delete();
         $dataUser->delete();
 
-        return redirect()->route('mahasiswa.index')->with('success','Data mahasiswa berhasil dihapus');
+        return redirect()->route('mahasiswa.index')->with('success', 'Data mahasiswa berhasil dihapus');
     }
 }
