@@ -54,7 +54,7 @@
                     <div role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="d-flex">
                             <div class="toast-body">
-                                <i class="bi bi-exclamation-circle-fill mx-1"></i>
+                                <i class="bi bi-x-circle-fill mx-1"></i>
                                 {{ $message }}.
                             </div>
                             <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
