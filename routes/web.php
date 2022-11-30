@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\KuisionerController;
 use App\Http\Controllers\Admin\MahasiswaController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,14 +20,16 @@ Route::get('/', function () {
     return redirect()->route('login');
 });
 
-Route::prefix('admin')->middleware(['auth'])->group(function(){
-    Route::get('/',[DashboardController::class,'index'])->name('dashboard');
-    Route::get('/mahasiswa/delete/{id}',[MahasiswaController::class,'delete'])->name('mahasiswa.delete');
+Route::prefix('admin')->middleware(['auth'])->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('/mahasiswa/delete/{id}', [MahasiswaController::class, 'delete'])->name('mahasiswa.delete');
     Route::get('/mahasiswa/export', [MahasiswaController::class, 'export'])->name('mahasiswa.export');
+    Route::get('/kuisioner/export', [KuisionerController::class, 'export'])->name('kuisioner.export');
     Route::post('/mahasiswa/import', [MahasiswaController::class, 'import'])->name('mahasiswa.import');
     Route::resources([
-        'mahasiswa'=> MahasiswaController::class,
+        'mahasiswa' => MahasiswaController::class,
+        'kuisioner' => KuisionerController::class,
     ]);
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
