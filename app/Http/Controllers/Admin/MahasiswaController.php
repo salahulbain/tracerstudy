@@ -38,8 +38,8 @@ class MahasiswaController extends Controller
                     ->addIndexColumn()
                     ->addColumn('action', function ($row) {
                         $btn = '<a href="' . route('mahasiswa.edit', $row->id) . '" data-bs-toggle="tooltip" data-bs-placement="top" title="Edit"><i class="bi bi-pencil-square p-1 text-warning"></i></a>';
-                        $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.show', $row->id) . '" data-title="Detail Data Mahasiswa"><i class="bi bi-eye p-1"></i></a>';
-                        $btn .= '<a href="#dataMahasiswaModal" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.delete', $row->id) . '" data-title="Yakin ingin menghapus ?"><i class="bi bi-trash-fill p-1 text-danger"></i></a>';
+                        $btn .= '<a href="#dataMahasiswaModal" title="Detail" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.show', $row->id) . '" data-title="Detail Data Mahasiswa"><i class="bi bi-eye p-1"></i></a>';
+                        $btn .= '<a href="#dataMahasiswaModal" title="Hapus" data-bs-toggle="modal" data-bs-target="#dataMahasiswaModal" data-remote="' . route('mahasiswa.delete', $row->id) . '" data-title="Yakin ingin menghapus ?"><i class="bi bi-trash-fill p-1 text-danger"></i></a>';
                         return $btn;
                     })
                     ->rawColumns(['action'])
