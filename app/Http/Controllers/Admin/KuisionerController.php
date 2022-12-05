@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Exports\KuisionerExport;
 use App\Http\Controllers\Controller;
+use App\Models\DataMahasiswa;
 use App\Models\Kuisioner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +29,8 @@ class KuisionerController extends Controller
             return view('pages.admin.kuisioner.index-admin');
         }
         if (Auth::user()->role == "USER") {
-            return view('pages.admin.kuisioner.index');
+            $mahasiswa = DataMahasiswa::findOrFail(Auth::user()->user_id);
+            return view('pages.admin.kuisioner.index', compact('mahasiswa'));
         }
     }
 
@@ -50,7 +52,10 @@ class KuisionerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //user mahasiswa
+        if (Auth::user()->role == "USER") {
+            dd($request->all());
+        }
     }
 
     /**
