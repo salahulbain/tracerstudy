@@ -256,55 +256,69 @@
                                             <div class="flex items-center">
                                                 <input id="1_typeCompany" name="f1101" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="1" /><label for="1_typeCompany"
+                                                    value="1" />
+                                                <label for="1_typeCompany"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Intansi
                                                     pemerintah
-                                                    (1)</label>
+                                                    (1)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="6_typeCompany" name="f1101" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="6" /><label for="6_typeCompany"
+                                                    value="6" />
+                                                <label for="6_typeCompany"
                                                     class="ml-3 block text-sm font-medium text-gray-700">BUMN/BUMD
-                                                    (6)</label>
+                                                    (6)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="7_typeCompany" name="f1101" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="7" /><label for="7_typeCompany"
+                                                    value="7" />
+                                                <label for="7_typeCompany"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Institusi/Organisasi
-                                                    Multilateral (7)</label>
+                                                    Multilateral (7)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="2_typeCompany" name="f1101" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="2" /><label for="2_typeCompany"
+                                                    value="2" />
+                                                <label for="2_typeCompany"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Organisasi
                                                     non-profit/Lembaga Swadaya Masyarakat
-                                                    (2)</label>
+                                                    (2)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="3_typeCompany" name="f1101" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="3" /><label for="3_typeCompany"
+                                                    value="3" />
+                                                <label for="3_typeCompany"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Perusahaan
                                                     swasta
-                                                    (3)</label>
+                                                    (3)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="4_typeCompany" name="f1101" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="4" /><label for="4_typeCompany"
+                                                    value="4" />
+                                                <label for="4_typeCompany"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Wiraswasta/perusahaan
-                                                    sendiri (4)</label>
+                                                    sendiri (4)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="5_typeCompany" name="f1101" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="5" /><label for="5_typeCompany"
+                                                    value="5" />
+                                                <label for="5_typeCompany"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Lainnya,
                                                     tuliskan
-                                                    (5)</label>
+                                                    (5)
+                                                </label>
                                             </div>
                                             <input type="text" name="f1102" id="f1102" placeholder="f1101"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
@@ -330,10 +344,10 @@
                                                     <select id="f5c" name="f5c"
                                                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
                                                         <option>Silahkan Pilih</option>
-                                                        <option>Founder (1)</option>
-                                                        <option>Co-Founder (2)</option>
-                                                        <option>Staff (3)</option>
-                                                        <option>Freelance/Kerja Lepas (4)</option>
+                                                        <option value="1">Founder (1)</option>
+                                                        <option value="2">Co-Founder (2)</option>
+                                                        <option value="3">Staff (3)</option>
+                                                        <option value="4">Freelance/Kerja Lepas (4)</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -365,7 +379,7 @@
                                         <div class="mb-4">
                                             <div class="grid grid-cols-6 gap-6 mt-4">
                                                 <div class="col-span-6 sm:col-span-3">
-                                                    <label for="country"
+                                                    <label for="f18a"
                                                         class="block text-sm font-medium text-gray-700">Sumber biaya
                                                         (f18a)
                                                     </label>
@@ -378,10 +392,12 @@
                                                 </div>
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <div>
-                                                        <label for="nim"
+                                                        <label for="f18b"
                                                             class="block text-sm font-medium text-gray-700">Perguruan
                                                             Tinggi
-                                                            (f18b)</label><input type="text" readonly
+                                                            (f18b)
+                                                        </label>
+                                                        <input type="text" name="f18b" id="f18b" readonly
                                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                     </div>
                                                 </div>
@@ -392,7 +408,9 @@
                                                         <label for="nim"
                                                             class="block text-sm font-medium text-gray-700">Program
                                                             Studi
-                                                            (f18c)</label><input type="text" readonly
+                                                            (f18c)
+                                                        </label>
+                                                        <input type="text" readonly
                                                             placeholder="Silahkan pilih perguruan tinggi terlebih dahulu"
                                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                     </div>
@@ -400,7 +418,9 @@
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="f18d"
                                                         class="block text-sm font-medium text-gray-700">Tanggal Masuk
-                                                        (f18d)</label><input type="date" name="f18d" id="f18d"
+                                                        (f18d)
+                                                    </label>
+                                                    <input type="date" name="f18d" id="f18d"
                                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                 </div>
                                             </div>
@@ -413,54 +433,68 @@
                                             <div class="flex items-center">
                                                 <input id="1_sumberDana" name="f1201" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="1" /><label for="1_sumberDana"
+                                                    value="1" />
+                                                <label for="1_sumberDana"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Biaya
-                                                    Sendiri/Keluarga (1)</label>
+                                                    Sendiri/Keluarga (1)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="2_sumberDana" name="f1201" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="2" /><label for="2_sumberDana"
+                                                    value="2" />
+                                                <label for="2_sumberDana"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Beasiswa ADIK
-                                                    (2)</label>
+                                                    (2)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="3_sumberDana" name="f1201" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="3" /><label for="3_sumberDana"
+                                                    value="3" />
+                                                <label for="3_sumberDana"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Beasiswa
                                                     BIDIKMISI
-                                                    (3)</label>
+                                                    (3)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="4_sumberDana" name="f1201" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="4" /><label for="4_sumberDana"
+                                                    value="4" />
+                                                <label for="4_sumberDana"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Beasiswa PPA
-                                                    (4)</label>
+                                                    (4)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="5_sumberDana" name="f1201" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="5" /><label for="5_sumberDana"
+                                                    value="5" />
+                                                <label for="5_sumberDana"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Beasiswa
                                                     AFIRMASI
-                                                    (5)</label>
+                                                    (5)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="6_sumberDana" name="f1201" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="6" /><label for="6_sumberDana"
+                                                    value="6" />
+                                                <label for="6_sumberDana"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Beasiswa
-                                                    Perusahaan/Swasta (6)</label>
+                                                    Perusahaan/Swasta (6)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="7_sumberDana" name="f1201" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="7" /><label for="7_sumberDana"
+                                                    value="7" />
+                                                <label for="7_sumberDana"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Lainnya,
                                                     tuliskan
-                                                    (7)</label>
+                                                    (7)
+                                                </label>
                                             </div>
                                             <input type="text" name="f1202" id="f1202" placeholder="f1202"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
@@ -473,38 +507,48 @@
                                             <div class="flex items-center">
                                                 <input id="1_hubunganBidangStudi" name="f14" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="1" /><label for="1_hubunganBidangStudi"
+                                                    value="1" />
+                                                <label for="1_hubunganBidangStudi"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Sangat Erat
-                                                    (1)</label>
+                                                    (1)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="2_hubunganBidangStudi" name="f14" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="2" /><label for="2_hubunganBidangStudi"
+                                                    value="2" />
+                                                <label for="2_hubunganBidangStudi"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Erat
-                                                    (2)</label>
+                                                    (2)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="3_hubunganBidangStudi" name="f14" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="3" /><label for="3_hubunganBidangStudi"
+                                                    value="3" />
+                                                <label for="3_hubunganBidangStudi"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Cukup Erat
-                                                    (3)</label>
+                                                    (3)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="4_hubunganBidangStudi" name="f14" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="4" /><label for="4_hubunganBidangStudi"
+                                                    value="4" />
+                                                <label for="4_hubunganBidangStudi"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Kurang Erat
-                                                    (4)</label>
+                                                    (4)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="5_hubunganBidangStudi" name="f14" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="5" /><label for="5_hubunganBidangStudi"
+                                                    value="5" />
+                                                <label for="5_hubunganBidangStudi"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Tidak Sama
                                                     Sekali
-                                                    (5)</label>
+                                                    (5)
+                                                </label>
                                             </div>
                                         </div>
                                         <li class="mb-4">
@@ -515,31 +559,39 @@
                                             <div class="flex items-center">
                                                 <input id="1_kesesuaianTingkatPendidikan" name="f15" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="1" /><label for="1_kesesuaianTingkatPendidikan"
+                                                    value="1" />
+                                                <label for="1_kesesuaianTingkatPendidikan"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Setingkat Lebih
-                                                    Tinggi (1)</label>
+                                                    Tinggi (1)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="2_kesesuaianTingkatPendidikan" name="f15" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="2" /><label for="2_kesesuaianTingkatPendidikan"
+                                                    value="2" />
+                                                <label for="2_kesesuaianTingkatPendidikan"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Tingkat yang
                                                     Sama
-                                                    (2)</label>
+                                                    (2)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="3_kesesuaianTingkatPendidikan" name="f15" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="3" /><label for="3_kesesuaianTingkatPendidikan"
+                                                    value="3" />
+                                                <label for="3_kesesuaianTingkatPendidikan"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Setingkat Lebih
-                                                    Rendah (3)</label>
+                                                    Rendah (3)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="4_kesesuaianTingkatPendidikan" name="f15" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="4" /><label for="4_kesesuaianTingkatPendidikan"
+                                                    value="4" />
+                                                <label for="4_kesesuaianTingkatPendidikan"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Tidak Perlu
-                                                    Pendidikan Tinggi (4)</label>
+                                                    Pendidikan Tinggi (4)
+                                                </label>
                                             </div>
                                         </div>
                                         <li class="mb-4">
@@ -993,39 +1045,49 @@
                                                     <div class="flex items-center">
                                                         <input id="1_perkuliahan" name="f21" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="1" /><label for="1_perkuliahan"
+                                                            value="1" />
+                                                        <label for="1_perkuliahan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Sangat
-                                                            Besar (1)</label>
+                                                            Besar (1)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="2_perkuliahan" name="f21" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="2" /><label for="2_perkuliahan"
+                                                            value="2" />
+                                                        <label for="2_perkuliahan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Besar
-                                                            (2)</label>
+                                                            (2)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="3_perkuliahan" name="f21" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="3" /><label for="3_perkuliahan"
+                                                            value="3" />
+                                                        <label for="3_perkuliahan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Cukup
                                                             Besar
-                                                            (3)</label>
+                                                            (3)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="4_perkuliahan" name="f21" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="4" /><label for="4_perkuliahan"
+                                                            value="4" />
+                                                        <label for="4_perkuliahan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Kurang
-                                                            Besar (4)</label>
+                                                            Besar (4)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="5_perkuliahan" name="f21" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="5" /><label for="5_perkuliahan"
+                                                            value="5" />
+                                                        <label for="5_perkuliahan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                             Sama
-                                                            Sekali (5)</label>
+                                                            Sekali (5)
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1036,39 +1098,49 @@
                                                     <div class="flex items-center">
                                                         <input id="1_demontrasi" name="f22" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="1" /><label for="1_demontrasi"
+                                                            value="1" />
+                                                        <label for="1_demontrasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Sangat
-                                                            Besar (1)</label>
+                                                            Besar (1)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="2_demontrasi" name="f22" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="2" /><label for="2_demontrasi"
+                                                            value="2" />
+                                                        <label for="2_demontrasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Besar
-                                                            (2)</label>
+                                                            (2)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="3_demontrasi" name="f22" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="3" /><label for="3_demontrasi"
+                                                            value="3" />
+                                                        <label for="3_demontrasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Cukup
                                                             Besar
-                                                            (3)</label>
+                                                            (3)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="4_demontrasi" name="f22" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="4" /><label for="4_demontrasi"
+                                                            value="4" />
+                                                        <label for="4_demontrasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Kurang
-                                                            Besar (4)</label>
+                                                            Besar (4)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="5_demontrasi" name="f22" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="5" /><label for="5_demontrasi"
+                                                            value="5" />
+                                                        <label for="5_demontrasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                             Sama
-                                                            Sekali (5)</label>
+                                                            Sekali (5)
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1079,39 +1151,49 @@
                                                     <div class="flex items-center">
                                                         <input id="1_partisipasi" name="f23" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="1" /><label for="1_partisipasi"
+                                                            value="1" />
+                                                        <label for="1_partisipasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Sangat
-                                                            Besar (1)</label>
+                                                            Besar (1)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="2_partisipasi" name="f23" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="2" /><label for="2_partisipasi"
+                                                            value="2" />
+                                                        <label for="2_partisipasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Besar
-                                                            (2)</label>
+                                                            (2)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="3_partisipasi" name="f23" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="3" /><label for="3_partisipasi"
+                                                            value="3" />
+                                                        <label for="3_partisipasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Cukup
                                                             Besar
-                                                            (3)</label>
+                                                            (3)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="4_partisipasi" name="f23" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="4" /><label for="4_partisipasi"
+                                                            value="4" />
+                                                        <label for="4_partisipasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Kurang
-                                                            Besar (4)</label>
+                                                            Besar (4)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="5_partisipasi" name="f23" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="5" /><label for="5_partisipasi"
+                                                            value="5" />
+                                                        <label for="5_partisipasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                             Sama
-                                                            Sekali (5)</label>
+                                                            Sekali (5)
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1122,39 +1204,49 @@
                                                     <div class="flex items-center">
                                                         <input id="1_magang" name="f24" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="1" /><label for="1_magang"
+                                                            value="1" />
+                                                        <label for="1_magang"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Sangat
-                                                            Besar (1)</label>
+                                                            Besar (1)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="2_magang" name="f24" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="2" /><label for="2_magang"
+                                                            value="2" />
+                                                        <label for="2_magang"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Besar
-                                                            (2)</label>
+                                                            (2)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="3_magang" name="f24" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="3" /><label for="3_magang"
+                                                            value="3" />
+                                                        <label for="3_magang"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Cukup
                                                             Besar
-                                                            (3)</label>
+                                                            (3)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="4_magang" name="f24" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="4" /><label for="4_magang"
+                                                            value="4" />
+                                                        <label for="4_magang"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Kurang
-                                                            Besar (4)</label>
+                                                            Besar (4)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="5_magang" name="f24" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="5" /><label for="5_magang"
+                                                            value="5" />
+                                                        <label for="5_magang"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                             Sama
-                                                            Sekali (5)</label>
+                                                            Sekali (5)
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1165,39 +1257,49 @@
                                                     <div class="flex items-center">
                                                         <input id="1_praktikum" name="f25" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="1" /><label for="1_praktikum"
+                                                            value="1" />
+                                                        <label for="1_praktikum"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Sangat
-                                                            Besar (1)</label>
+                                                            Besar (1)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="2_praktikum" name="f25" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="2" /><label for="2_praktikum"
+                                                            value="2" />
+                                                        <label for="2_praktikum"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Besar
-                                                            (2)</label>
+                                                            (2)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="3_praktikum" name="f25" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="3" /><label for="3_praktikum"
+                                                            value="3" />
+                                                        <label for="3_praktikum"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Cukup
                                                             Besar
-                                                            (3)</label>
+                                                            (3)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="4_praktikum" name="f25" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="4" /><label for="4_praktikum"
+                                                            value="4" />
+                                                        <label for="4_praktikum"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Kurang
-                                                            Besar (4)</label>
+                                                            Besar (4)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="5_praktikum" name="f25" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="5" /><label for="5_praktikum"
+                                                            value="5" />
+                                                        <label for="5_praktikum"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                             Sama
-                                                            Sekali (5)</label>
+                                                            Sekali (5)
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1209,39 +1311,49 @@
                                                     <div class="flex items-center">
                                                         <input id="1_kerjaLapangan" name="f26" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="1" /><label for="1_kerjaLapangan"
+                                                            value="1" />
+                                                        <label for="1_kerjaLapangan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Sangat
-                                                            Besar (1)</label>
+                                                            Besar (1)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="2_kerjaLapangan" name="f26" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="2" /><label for="2_kerjaLapangan"
+                                                            value="2" />
+                                                        <label for="2_kerjaLapangan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Besar
-                                                            (2)</label>
+                                                            (2)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="3_kerjaLapangan" name="f26" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="3" /><label for="3_kerjaLapangan"
+                                                            value="3" />
+                                                        <label for="3_kerjaLapangan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Cukup
                                                             Besar
-                                                            (3)</label>
+                                                            (3)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="4_kerjaLapangan" name="f26" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="4" /><label for="4_kerjaLapangan"
+                                                            value="4" />
+                                                        <label for="4_kerjaLapangan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Kurang
-                                                            Besar (4)</label>
+                                                            Besar (4)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="5_kerjaLapangan" name="f26" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="5" /><label for="5_kerjaLapangan"
+                                                            value="5" />
+                                                        <label for="5_kerjaLapangan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                             Sama
-                                                            Sekali (5)</label>
+                                                            Sekali (5)
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1252,39 +1364,49 @@
                                                     <div class="flex items-center">
                                                         <input id="1_diskusi" name="f27" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="1" /><label for="1_diskusi"
+                                                            value="1" />
+                                                        <label for="1_diskusi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Sangat
-                                                            Besar (1)</label>
+                                                            Besar (1)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="2_diskusi" name="f27" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="2" /><label for="2_diskusi"
+                                                            value="2" />
+                                                        <label for="2_diskusi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Besar
-                                                            (2)</label>
+                                                            (2)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="3_diskusi" name="f27" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="3" /><label for="3_diskusi"
+                                                            value="3" />
+                                                        <label for="3_diskusi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Cukup
                                                             Besar
-                                                            (3)</label>
+                                                            (3)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="4_diskusi" name="f27" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="4" /><label for="4_diskusi"
+                                                            value="4" />
+                                                        <label for="4_diskusi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Kurang
-                                                            Besar (4)</label>
+                                                            Besar (4)
+                                                        </label>
                                                     </div>
                                                     <div class="flex items-center">
                                                         <input id="5_diskusi" name="f27" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="5" /><label for="5_diskusi"
+                                                            value="5" />
+                                                        <label for="5_diskusi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                             Sama
-                                                            Sekali (5)</label>
+                                                            Sekali (5)
+                                                        </label>
                                                     </div>
                                                 </div>
                                             </div>
@@ -1297,30 +1419,34 @@
                                             <div class="flex items-center">
                                                 <input id="sebelum" name="f301" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="1" />
-                                                (1)(f301)<label for="sebelum"
+                                                    value="1" />(1)(f301)
+                                                <label for="sebelum"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Kira-kira
                                                     <input type="number" name="f302" placeholder="f302"
                                                         class="focus:ring-indigo-500 h-10 w-20 text-indigo-600 text-sm border-gray-300" />
-                                                    bulan sebelum lulus</label>
+                                                    bulan sebelum lulus
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="sesudah" name="f301" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="2" />
-                                                (2)(f301)<label for="sesudah"
+                                                    value="2" />(2)(f301)
+                                                <label for="sesudah"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Kira-kira
                                                     <input type="number" name="f303" placeholder="f303"
                                                         class="focus:ring-indigo-500 h-10 w-20 text-indigo-600 text-sm border-gray-300" />
-                                                    bulan sesudah lulus</label>
+                                                    bulan sesudah lulus
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="tidak" name="f301" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="3" />(3)(f301)<label for="tidak"
+                                                    value="3" />(3)(f301)
+                                                <label for="tidak"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Saya tidak
                                                     mencari
-                                                    kerja</label>
+                                                    kerja
+                                                </label>
                                             </div>
                                         </div>
                                         <li class="mb-4">
@@ -1337,7 +1463,8 @@
                                                     <label for="0_f401" class="font-medium text-gray-700">Melalui iklan
                                                         di
                                                         koran/majalah, brosur
-                                                        (f401)</label>
+                                                        (f401)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1348,7 +1475,8 @@
                                                 <div class="ml-3 text-sm">
                                                     <label for="1_f402" class="font-medium text-gray-700">Melamar ke
                                                         perusahaan tanpa mengetahui lowongan
-                                                        yang ada (f402)</label>
+                                                        yang ada (f402)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1359,7 +1487,8 @@
                                                 <div class="ml-3 text-sm">
                                                     <label for="2_f403"
                                                         class="font-medium text-gray-700">Pergikebursa/pamerankerja
-                                                        (f403)</label>
+                                                        (f403)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1370,7 +1499,8 @@
                                                 <div class="ml-3 text-sm">
                                                     <label for="3_f404"
                                                         class="font-medium text-gray-700">Mencarilewatinternet/iklanonline/milis
-                                                        (f404)</label>
+                                                        (f404)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1380,7 +1510,8 @@
                                                 </div>
                                                 <div class="ml-3 text-sm">
                                                     <label for="4_f405" class="font-medium text-gray-700">Dihubungi oleh
-                                                        perusahaan (f405)</label>
+                                                        perusahaan (f405)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1390,7 +1521,8 @@
                                                 </div>
                                                 <div class="ml-3 text-sm">
                                                     <label for="5_f406" class="font-medium text-gray-700">Menghubungi
-                                                        Kemenakertrans (f406)</label>
+                                                        Kemenakertrans (f406)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1402,7 +1534,8 @@
                                                     <label for="6_f407" class="font-medium text-gray-700">Menghubungi
                                                         agen
                                                         tenaga kerja komersial/swasta
-                                                        (f407)</label>
+                                                        (f407)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1414,7 +1547,8 @@
                                                     <label for="7_f408" class="font-medium text-gray-700">Memeroleh
                                                         informasi dari pusat/kantor
                                                         pengembangan karir fakultas/universitas
-                                                        (f408)</label>
+                                                        (f408)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1425,7 +1559,8 @@
                                                 <div class="ml-3 text-sm">
                                                     <label for="8_f409"
                                                         class="font-medium text-gray-700">Menghubungikantorkemahasiswaan/hubunganalumni
-                                                        (f409)</label>
+                                                        (f409)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1436,7 +1571,8 @@
                                                 <div class="ml-3 text-sm">
                                                     <label for="9_f410"
                                                         class="font-medium text-gray-700">Membangunjejaring(network)sejakmasihkuliah
-                                                        (f410)</label>
+                                                        (f410)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1448,7 +1584,8 @@
                                                     <label for="10_f411" class="font-medium text-gray-700">Melalui
                                                         relasi
                                                         (misalnya dosen, orang tua,
-                                                        saudara, teman, dll.) (f411)</label>
+                                                        saudara, teman, dll.) (f411)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1459,7 +1596,8 @@
                                                 <div class="ml-3 text-sm">
                                                     <label for="11_f412" class="font-medium text-gray-700">Membangun
                                                         bisnis
-                                                        sendiri (f412)</label>
+                                                        sendiri (f412)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1470,7 +1608,8 @@
                                                 <div class="ml-3 text-sm">
                                                     <label for="12_f413" class="font-medium text-gray-700">Melalui
                                                         penempatan kerja atau magang
-                                                        (f413)</label>
+                                                        (f413)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1482,7 +1621,8 @@
                                                     <label for="13_f414" class="font-medium text-gray-700">Bekerja di
                                                         tempat
                                                         yang sama dengan tempat kerja
-                                                        semasa kuliah (f414)</label>
+                                                        semasa kuliah (f414)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1492,7 +1632,8 @@
                                                 </div>
                                                 <div class="ml-3 text-sm">
                                                     <label for="14_f415" class="font-medium text-gray-700">Lainnya
-                                                        (f415)</label>
+                                                        (f415)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <input type="text" name="f4016" id="f4016" placeholder="f4016"
@@ -1551,44 +1692,49 @@
                                         <div class="space-y-4 mb-4">
                                             <div class="flex items-center">
                                                 <input id="1_activeSearch" name="f1001" type="radio"
-                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" /><label
-                                                    for="1_activeSearch"
+                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
+                                                <label for="1_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Tidak
-                                                    (1)</label>
+                                                    (1)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="2_activeSearch" name="f1001" type="radio"
-                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" /><label
-                                                    for="2_activeSearch"
+                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
+                                                <label for="2_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Tidak, tapi
                                                     saya
                                                     sedang menunggu hasil lamaran
-                                                    kerja (2)</label>
+                                                    kerja (2)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="3_activeSearch" name="f1001" type="radio"
-                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" /><label
-                                                    for="3_activeSearch"
+                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
+                                                <label for="3_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Ya, saya akan
                                                     mulai
                                                     bekerja dalam 2 minggu ke
-                                                    depan (3)</label>
+                                                    depan (3)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="4_activeSearch" name="f1001" type="radio"
-                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" /><label
-                                                    for="4_activeSearch"
+                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
+                                                <label for="4_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Ya, tapi saya
                                                     belum
                                                     pasti akan bekerja dalam 2
-                                                    minggu ke depan (4)</label>
+                                                    minggu ke depan (4)
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="5_activeSearch" name="f1001" type="radio"
-                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" /><label
-                                                    for="5_activeSearch"
+                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
+                                                <label for="5_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Lainnya
-                                                    (5)</label>
+                                                    (5)
+                                                </label>
                                             </div>
                                             <input type="text" name="f1002" id="f1002" placeholder="f1002"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
@@ -1610,7 +1756,8 @@
                                                         tidak
                                                         sesuai; pekerjaan saya
                                                         sekarang sudah sesuai dengan pendidikan saya.
-                                                        (f1601)</label>
+                                                        (f1601)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1622,7 +1769,8 @@
                                                 <div class="ml-3 text-sm">
                                                     <label for="1_f1602" class="font-medium text-gray-700">Saya belum
                                                         mendapatkan pekerjaan yang lebih
-                                                        sesuai. (f1602)</label>
+                                                        sesuai. (f1602)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1635,7 +1783,8 @@
                                                     <label for="2_f1603" class="font-medium text-gray-700">Di pekerjaan
                                                         ini
                                                         saya memeroleh prospek karir
-                                                        yang baik. (f1603)</label>
+                                                        yang baik. (f1603)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1649,7 +1798,8 @@
                                                         suka
                                                         bekerja di area pekerjaan yang
                                                         tidak ada hubungannya dengan pendidikan saya.
-                                                        (f1604)</label>
+                                                        (f1604)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1663,7 +1813,8 @@
                                                         dipromosikan
                                                         ke posisi yang kurang
                                                         berhubungan dengan pendidikan saya dibanding
-                                                        posisi sebelumnya. (f1605)</label>
+                                                        posisi sebelumnya. (f1605)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1675,7 +1826,8 @@
                                                 <div class="ml-3 text-sm">
                                                     <label for="5_f1606" class="font-medium text-gray-700">Saya dapat
                                                         memeroleh pendapatan yang lebih
-                                                        tinggi di pekerjaan ini. (f1606)</label>
+                                                        tinggi di pekerjaan ini. (f1606)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1688,7 +1840,8 @@
                                                     <label for="6_f1607" class="font-medium text-gray-700">Pekerjaan
                                                         saya
                                                         saat ini lebih
-                                                        aman/terjamin/secure (f1607)</label>
+                                                        aman/terjamin/secure (f1607)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1701,7 +1854,8 @@
                                                     <label for="7_f1608" class="font-medium text-gray-700">Pekerjaan
                                                         saya
                                                         saat ini lebih menarik
-                                                        (f1608)</label>
+                                                        (f1608)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1715,7 +1869,8 @@
                                                         saya
                                                         saat ini lebih memungkinkan saya
                                                         mengambil pekerjaan tambahan/jadwal yang
-                                                        fleksibel, dll. (f1609)</label>
+                                                        fleksibel, dll. (f1609)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1728,7 +1883,8 @@
                                                     <label for="9_f1610" class="font-medium text-gray-700">Pekerjaan
                                                         saya
                                                         saat ini lokasinya lebih dekat
-                                                        dari rumah saya. (f1610)</label>
+                                                        dari rumah saya. (f1610)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1741,7 +1897,8 @@
                                                     <label for="10_f1611" class="font-medium text-gray-700">Pekerjaan
                                                         saya
                                                         saat ini dapat lebih menjamin
-                                                        kebutuhan keluarga saya. (f1611)</label>
+                                                        kebutuhan keluarga saya. (f1611)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1755,7 +1912,8 @@
                                                         meniti
                                                         karir ini, saya harus menerima
                                                         pekerjaan yang tidak berhubungan dengan
-                                                        pendidikan saya (f1612)</label>
+                                                        pendidikan saya (f1612)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <div class="relative flex items-start">
@@ -1766,7 +1924,8 @@
                                                 </div>
                                                 <div class="ml-3 text-sm">
                                                     <label for="12_f1613" class="font-medium text-gray-700">Lainnya
-                                                        (f1613)</label>
+                                                        (f1613)
+                                                    </label>
                                                 </div>
                                             </div>
                                             <input type="text" name="f1614" id="f1614" placeholder="f1614"
@@ -1781,7 +1940,8 @@
                             <i class="bi bi-check-circle-fill mr-1"></i>
                             Submit
                             Jawaban
-                            Anda</button>
+                            Anda
+                        </button>
                     </form>
 
                     {{-- batas kuisioner --}}
@@ -1921,10 +2081,8 @@
 @push('addon-after-script')
 <script>
     $('.page-content').on("change","#f5a1",function(){
-            var id = $(this).val();
-            console.log(id);
-            var token = $(this).data('token');
-            // var data = "_token"+token+"&id="+id+"&data=desa";
+            let id    = $(this).val();
+            let token = $(this).data('token');
             $.ajax({
                 type: 'POST',
                 url: "{{ route('getkabkota') }}",
