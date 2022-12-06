@@ -25,6 +25,7 @@ Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/mahasiswa/delete/{id}', [MahasiswaController::class, 'delete'])->name('mahasiswa.delete');
     Route::get('/mahasiswa/export', [MahasiswaController::class, 'export'])->name('mahasiswa.export');
     Route::get('/kuisioner/export', [KuisionerController::class, 'export'])->name('kuisioner.export');
+    Route::post('/kuisioner/getkabkota', [KuisionerController::class, 'getkabkota'])->name('getkabkota');
     Route::post('/mahasiswa/import', [MahasiswaController::class, 'import'])->name('mahasiswa.import');
     Route::resources([
         'mahasiswa' => MahasiswaController::class,

@@ -15,7 +15,7 @@ class KuisionerController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->only(['show', 'create', 'edit', 'destroy', 'store', 'export']);
+        $this->middleware('admin')->only(['show', 'create', 'edit', 'destroy', 'export']);
     }
 
     /**
@@ -30,7 +30,19 @@ class KuisionerController extends Controller
         }
         if (Auth::user()->role == "USER") {
             $mahasiswa = DataMahasiswa::findOrFail(Auth::user()->user_id);
-            return view('pages.admin.kuisioner.index', compact('mahasiswa'));
+            $wilayah = DB::table('provinsis')->select('kode', 'nama')->get();
+
+            return view('pages.admin.kuisioner.index', compact(['mahasiswa', 'wilayah']));
+        }
+    }
+
+    public function getkabkota(Request $request)
+    {
+        $kode = explode('|', $request->id);
+        $kabkota = DB::table('kota_kabupatens')->where('kode_prov', $kode[1])->get();
+
+        foreach ($kabkota as $kab) {
+            echo '<option value="' . $kab->nama . '">' . $kab->nama . '</option>';
         }
     }
 

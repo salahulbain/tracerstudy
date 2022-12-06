@@ -19,7 +19,8 @@
                 </div>
                 <div class="card-body">
                     {{-- kuisioner --}}
-                    <form action="">
+                    <form action="{{ route('kuisioner.store') }}" method="POST">
+                        @csrf
                         <div class="block w-full overflow-x-auto p-2">
                             <div class="px-4">
                                 <p class="font-poppins font-semibold text-[1.25rem] text-[#515152]">
@@ -30,14 +31,14 @@
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="npm" class="block text-sm font-medium text-gray-700">NIM
                                                 (nimhsmsmh)</label>
-                                            <input type="text" name="npm" id="npm" disabled=""
+                                            <input type="text" name="npm" id="npm" readonly
                                                 value="{{ $mahasiswa->npm }}"
                                                 class="bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="kode_pt" class="block text-sm font-medium text-gray-700">Kode PT
                                                 (kdptimsmh)</label>
-                                            <input type="text" name="kode_pt" id="kode_pt" disabled=""
+                                            <input type="text" name="kode_pt" id="kode_pt" readonly
                                                 value="{{ $mahasiswa->kode_pt }}"
                                                 class="bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
@@ -47,14 +48,14 @@
                                             <label for="tahun_lulus"
                                                 class="block text-sm font-medium text-gray-700">Tahun
                                                 Lulus (tahun_lulus)</label>
-                                            <input type="text" name="tahun_lulus" id="tahun_lulus" disabled=""
+                                            <input type="text" name="tahun_lulus" id="tahun_lulus" readonly
                                                 value="{{ $mahasiswa->tahun_lulus }}"
                                                 class="bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="kode_prodi" class="block text-sm font-medium text-gray-700">Kode
                                                 Prodi (kdpstmsmh)</label>
-                                            <input type="text" name="kode_prodi" id="kode_prodi" disabled=""
+                                            <input type="text" name="kode_prodi" id="kode_prodi" readonly
                                                 value="{{ $mahasiswa->kode_prodi }}"
                                                 class="bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
@@ -64,7 +65,7 @@
                                             <label for="nama_mahasiswa"
                                                 class="block text-sm font-medium text-gray-700">Nama
                                                 (nmmhsmsmh)</label>
-                                            <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" disabled=""
+                                            <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" readonly
                                                 value="{{ $mahasiswa->nama_mahasiswa }}"
                                                 class="bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
@@ -72,7 +73,7 @@
                                             <label for="no_hp" class="block text-sm font-medium text-gray-700">Nomor
                                                 Telepon/HP
                                                 (telpomsmh)</label>
-                                            <input type="text" name="no_hp" id="no_hp" disabled=""
+                                            <input type="text" name="no_hp" id="no_hp" readonly
                                                 value="{{ $mahasiswa->no_hp }}"
                                                 class="bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
@@ -82,14 +83,14 @@
                                             <label for="email" class="block text-sm font-medium text-gray-700">Alamat
                                                 Email
                                                 (emailmsmh)</label>
-                                            <input type="text" name="email" id="email" disabled=""
+                                            <input type="text" name="email" id="email" readonly
                                                 value="{{ $mahasiswa->email }}"
                                                 class="bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="nik" class="block text-sm font-medium text-gray-700">NIK
                                                 (nik)</label>
-                                            <input type="text" name="nik" id="nik" disabled=""
+                                            <input type="text" name="nik" id="nik" readonly
                                                 value="{{ $mahasiswa->nik }}"
                                                 class="bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
@@ -222,9 +223,17 @@
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="f5a1"
                                                         class="block text-sm font-medium text-gray-700">Provinsi
-                                                        (f5a1)</label>
-                                                    <input type="text" id="f5a1" name="f5a1"
-                                                        class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                        (f5a1)
+                                                    </label>
+                                                    <select id="f5a1" name="f5a1" data-token="{{ csrf_token() }}"
+                                                        class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                                        <option>Silahkan Pilih</option>
+                                                        @forelse ($wilayah as $item)
+                                                        <option value="{{ $item->nama }}|{{ $item->kode }}">{{
+                                                            $item->nama }}</option>
+                                                        @empty
+                                                        @endforelse
+                                                    </select>
                                                 </div>
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <div>
@@ -232,8 +241,9 @@
                                                             class="block text-sm font-medium text-gray-700">Kota/Kabupaten
                                                             (f5a2)
                                                         </label>
-                                                        <input type="text" name="f5a2" id="f5a2"
-                                                            class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                        <select id="f5a2" name="f5a2"
+                                                            class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
+                                                        </select>
                                                     </div>
                                                 </div>
                                             </div>
@@ -357,11 +367,13 @@
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="country"
                                                         class="block text-sm font-medium text-gray-700">Sumber biaya
-                                                        (f18a)</label><select id="f18a" name="f18a"
+                                                        (f18a)
+                                                    </label>
+                                                    <select id="f18a" name="f18a"
                                                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
                                                         <option>Silahkan Pilih</option>
-                                                        <option>Biaya Sendiri (1)</option>
-                                                        <option>Beasiswa (2)</option>
+                                                        <option value="1">Biaya Sendiri (1)</option>
+                                                        <option value="2">Beasiswa (2)</option>
                                                     </select>
                                                 </div>
                                                 <div class="col-span-6 sm:col-span-3">
@@ -369,7 +381,7 @@
                                                         <label for="nim"
                                                             class="block text-sm font-medium text-gray-700">Perguruan
                                                             Tinggi
-                                                            (f18b)</label><input type="text" disabled=""
+                                                            (f18b)</label><input type="text" readonly
                                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                     </div>
                                                 </div>
@@ -380,7 +392,7 @@
                                                         <label for="nim"
                                                             class="block text-sm font-medium text-gray-700">Program
                                                             Studi
-                                                            (f18c)</label><input type="text" disabled=""
+                                                            (f18c)</label><input type="text" readonly
                                                             placeholder="Silahkan pilih perguruan tinggi terlebih dahulu"
                                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                     </div>
@@ -1901,4 +1913,28 @@
             U+2212, U+2215, U+FEFF, U+FFFD;
     }
 </style>
+@endpush
+@push('addon-before-script')
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"
+    integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+@endpush
+@push('addon-after-script')
+<script>
+    $('.page-content').on("change","#f5a1",function(){
+            var id = $(this).val();
+            console.log(id);
+            var token = $(this).data('token');
+            // var data = "_token"+token+"&id="+id+"&data=desa";
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('getkabkota') }}",
+                data:{
+                    'id': id, '_token': token,
+                },
+                success: function(response) {
+                    $("#f5a2").html(response);
+                }
+            });
+        });
+</script>
 @endpush
