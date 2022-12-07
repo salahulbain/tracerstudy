@@ -13,6 +13,23 @@
 <div class="page-content">
     <section class="row" style="min-height: 80vh;">
         <div class="col-12">
+            @if ($message = Session::get('success'))
+            <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
+                <div class="toast show fade align-items-center text-bg-success border-0" role="alert" aria-live="polite"
+                    aria-atomic="true">
+                    <div role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="d-flex">
+                            <div class="toast-body">
+                                <i class="bi bi-check-circle m-1"></i>
+                                {{ $message }}.
+                            </div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                                aria-label="Close"></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @endif
             <div class="card shadow">
                 <div class="card-header">
                     <h3>Kuisioner Tracer Study</h3>
@@ -31,14 +48,14 @@
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="npm" class="block text-sm font-medium text-gray-700">NIM
                                                 (nimhsmsmh)</label>
-                                            <input type="text" name="npm" id="npm" readonly
+                                            <input type="text" name="nimhsmsmh" id="npm" readonly
                                                 value="{{ $mahasiswa->npm }}"
                                                 class="bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="kode_pt" class="block text-sm font-medium text-gray-700">Kode PT
                                                 (kdptimsmh)</label>
-                                            <input type="text" name="kode_pt" id="kode_pt" readonly
+                                            <input type="text" name="kdptimsmh" id="kode_pt" readonly
                                                 value="{{ $mahasiswa->kode_pt }}"
                                                 class="bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
@@ -55,7 +72,7 @@
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="kode_prodi" class="block text-sm font-medium text-gray-700">Kode
                                                 Prodi (kdpstmsmh)</label>
-                                            <input type="text" name="kode_prodi" id="kode_prodi" readonly
+                                            <input type="text" name="kdpstmsmh" id="kode_prodi" readonly
                                                 value="{{ $mahasiswa->kode_prodi }}"
                                                 class="bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
@@ -65,7 +82,7 @@
                                             <label for="nama_mahasiswa"
                                                 class="block text-sm font-medium text-gray-700">Nama
                                                 (nmmhsmsmh)</label>
-                                            <input type="text" name="nama_mahasiswa" id="nama_mahasiswa" readonly
+                                            <input type="text" name="nmmhsmsmh" id="nama_mahasiswa" readonly
                                                 value="{{ $mahasiswa->nama_mahasiswa }}"
                                                 class="bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
@@ -73,7 +90,7 @@
                                             <label for="no_hp" class="block text-sm font-medium text-gray-700">Nomor
                                                 Telepon/HP
                                                 (telpomsmh)</label>
-                                            <input type="text" name="no_hp" id="no_hp" readonly
+                                            <input type="text" name="telpomsmh" id="no_hp" readonly
                                                 value="{{ $mahasiswa->no_hp }}"
                                                 class="bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
@@ -83,7 +100,7 @@
                                             <label for="email" class="block text-sm font-medium text-gray-700">Alamat
                                                 Email
                                                 (emailmsmh)</label>
-                                            <input type="text" name="email" id="email" readonly
+                                            <input type="text" name="emailmsmh" id="email" readonly
                                                 value="{{ $mahasiswa->email }}"
                                                 class="bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
@@ -99,7 +116,8 @@
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="npwp" class="block text-sm font-medium text-gray-700">NPWP
                                                 (npwp)</label>
-                                            <input type="text" name="npwp" id="npwp" value="{{ $mahasiswa->npwp }}"
+                                            <input type="text" name="npwp" id="npwp"
+                                                value="{{ old('npwp') ?? $mahasiswa->npwp }}"
                                                 class="disabled:bg-gray-200 mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                         </div>
                                     </div>
@@ -109,14 +127,14 @@
                                 </p>
                                 <div class="ml-4 mt-[1.188rem]">
                                     <ol class="list-decimal">
-                                        <li class="mb-4">
+                                        <li class="mb-4 @error('f8') text-red-500 @enderror">
                                             Jelaskan status Anda saat ini? * (f8)
                                         </li>
                                         <div class="space-y-4 mb-4">
                                             <div class="flex items-center">
                                                 <input id="1_status" name="f8" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="1" />
+                                                    value="1" {{ old('f8')==1 ? 'checked' :'' }} />
                                                 <label for="1_status"
                                                     class="ml-3 block text-sm font-medium text-gray-700">
                                                     Bekerja (full
@@ -127,7 +145,7 @@
                                             <div class="flex items-center">
                                                 <input id="2_status" name="f8" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="2" />
+                                                    value="2" {{ old('f8')==2 ? 'checked' :'' }} />
                                                 <label for="2_status"
                                                     class="ml-3 block text-sm font-medium text-gray-700">
                                                     Belum
@@ -138,7 +156,7 @@
                                             <div class="flex items-center">
                                                 <input id="3_status" name="f8" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="3" />
+                                                    value="3" {{ old('f8')==3 ? 'checked' :'' }} />
                                                 <label for="3_status"
                                                     class="ml-3 block text-sm font-medium text-gray-700">
                                                     Wiraswasta
@@ -148,7 +166,7 @@
                                             <div class="flex items-center">
                                                 <input id="4_status" name="f8" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="4" />
+                                                    value="4" {{ old('f8')==4 ? 'checked' :'' }} />
                                                 <label for="4_status"
                                                     class="ml-3 block text-sm font-medium text-gray-700">
                                                     Melanjutkan
@@ -158,7 +176,7 @@
                                             <div class="flex items-center">
                                                 <input id="5_status" name="f8" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="5" />
+                                                    value="5" {{ old('f8')==5 ? 'checked' :'' }} />
                                                 <label for="5_status"
                                                     class="ml-3 block text-sm font-medium text-gray-700">
                                                     Tidak kerja
@@ -167,17 +185,24 @@
                                                     (5)
                                                 </label>
                                             </div>
+                                            @error('f8')
+                                            <div class="flex items-center">
+                                                <span class="ml-3 block text-sm font-medium text-red-700">
+                                                    {{ $message }}
+                                                </span>
+                                            </div>
+                                            @enderror
                                         </div>
-                                        <li class="mb-4">
+                                        <li class="mb-4 @error('f504') text-red-500 @enderror">
                                             Apakah Anda telah mendapatkan pekerjaan &lt;= 6 bulan
                                             / termasuk bekerja sebelum lulus? (f504)
                                         </li>
-                                        <div class="mb-4">
+                                        <div class=" mb-4">
                                             <div class="space-y-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-10">
                                                 <div class="flex items-center">
                                                     <input id="pekerjaan-ya" name="f504" type="radio"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                        value="1" />
+                                                        value="1" {{ old('f504')==1 ? 'checked' :'' }} />
                                                     <label for="pekerjaan-ya"
                                                         class="ml-3 block text-sm font-medium text-gray-700">
                                                         Ya
@@ -194,6 +219,13 @@
                                                         (2)
                                                     </label>
                                                 </div>
+                                                @error('f504')
+                                                <div class="flex items-center">
+                                                    <span class="ml-3 block text-sm font-medium text-red-700">
+                                                        {{ $message }}
+                                                    </span>
+                                                </div>
+                                                @enderror
                                             </div>
                                             <div class="grid grid-cols-6 gap-6 mt-4">
                                                 <div class="col-span-6 sm:col-span-3">
@@ -204,7 +236,13 @@
                                                         (f502)
                                                     </label>
                                                     <input type="number" name="f502" id="getJob"
+                                                        value="{{ old('f502') }}"
                                                         class="mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                    @error('f502')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="f505"
@@ -212,13 +250,19 @@
                                                         pendapatan Anda per bulan?
                                                         (take home pay)? (f505)
                                                     </label>
-                                                    <input type="number" name="f505" id="f505"
+                                                    <input type="number" name="f505" id="f505" value="{{ old('f505') }}"
                                                         class="mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                    @error('f505')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
-                                        <li class="mb-4">Dimana lokasi tempat Anda bekerja?</li>
-                                        <div class="mb-4">
+                                        <li class="mb-4 @error('f5a1') text-red-500 @enderror">Dimana lokasi tempat Anda
+                                            bekerja?</li>
+                                        <div class="mb-4 ">
                                             <div class="grid grid-cols-6 gap-6 mt-4">
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="f5a1"
@@ -227,13 +271,18 @@
                                                     </label>
                                                     <select id="f5a1" name="f5a1" data-token="{{ csrf_token() }}"
                                                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                                        <option>Silahkan Pilih</option>
+                                                        <option value="">Silahkan Pilih</option>
                                                         @forelse ($wilayah as $item)
                                                         <option value="{{ $item->nama }}|{{ $item->kode }}">{{
                                                             $item->nama }}</option>
                                                         @empty
                                                         @endforelse
                                                     </select>
+                                                    @error('f5a1')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <div>
@@ -244,11 +293,16 @@
                                                         <select id="f5a2" name="f5a2"
                                                             class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
                                                         </select>
+                                                        @error('f5a2')
+                                                        <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                            {{ $message }}
+                                                        </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <li class="mb-4">
+                                        <li class="mb-4 @error('f1101') text-red-500 @enderror">
                                             Apa jenis perusahaan/intansi/institusi tempat anda
                                             bekerja sekarang? (f1101)
                                         </li>
@@ -320,10 +374,20 @@
                                                     (5)
                                                 </label>
                                             </div>
-                                            <input type="text" name="f1102" id="f1102" placeholder="f1101"
+                                            <input type="text" name="f1102" id="f1102" placeholder="f1102"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            @error('f1101')
+                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
+                                            @error('f1102')
+                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
                                         </div>
-                                        <li class="mb-4">
+                                        <li class="mb-4 @error('f5b') text-red-500 @enderror">
                                             Apa nama perusahaan/kantor tempat Anda bekerja? (f5b)
                                         </li>
                                         <div class="mb-4">
@@ -331,10 +395,15 @@
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <input type="text" name="f5b" id="f5b"
                                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                    @error('f5b')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
-                                        <li class="mb-4">
+                                        <li class="mb-4 @error('f5c') text-red-500 @enderror">
                                             Bila berwiraswasta, apa posisi/jabatan Anda saat ini?
                                             (Apabila 1 Menjawab [3] wiraswasta) (f5c)
                                         </li>
@@ -343,16 +412,21 @@
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <select id="f5c" name="f5c"
                                                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                                        <option>Silahkan Pilih</option>
+                                                        <option value="">Silahkan Pilih</option>
                                                         <option value="1">Founder (1)</option>
                                                         <option value="2">Co-Founder (2)</option>
                                                         <option value="3">Staff (3)</option>
                                                         <option value="4">Freelance/Kerja Lepas (4)</option>
                                                     </select>
+                                                    @error('f5c')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
-                                        <li class="mb-4">
+                                        <li class="mb-4 @error('f5d') text-red-500 @enderror">
                                             Apa tingkat tempat kerja Anda? (f5d)
                                         </li>
                                         <div class="mb-4">
@@ -360,7 +434,7 @@
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <select id="f5d" name="f5d"
                                                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                                        <option>Silahkan Pilih</option>
+                                                        <option value="">Silahkan Pilih</option>
                                                         <option value="1">
                                                             Lokal/Wilayah/Wiraswasta tidak berbadan hukum
                                                             (1)
@@ -372,23 +446,35 @@
                                                             Multinasional/Internasional (3)
                                                         </option>
                                                     </select>
+                                                    @error('f5d')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
-                                        <li class="mb-4">Pertanyaan studi lanjut</li>
+                                        <li class="mb-4 @error('f5d') text-red-500 @enderror">Pertanyaan studi lanjut
+                                        </li>
                                         <div class="mb-4">
                                             <div class="grid grid-cols-6 gap-6 mt-4">
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="f18a"
-                                                        class="block text-sm font-medium text-gray-700">Sumber biaya
+                                                        class="block text-sm font-medium text-gray-700">Sumber
+                                                        biaya
                                                         (f18a)
                                                     </label>
                                                     <select id="f18a" name="f18a"
                                                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                                                        <option>Silahkan Pilih</option>
+                                                        <option value="">Silahkan Pilih</option>
                                                         <option value="1">Biaya Sendiri (1)</option>
                                                         <option value="2">Beasiswa (2)</option>
                                                     </select>
+                                                    @error('f18a')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <div>
@@ -397,8 +483,13 @@
                                                             Tinggi
                                                             (f18b)
                                                         </label>
-                                                        <input type="text" name="f18b" id="f18b" readonly
+                                                        <input type="text" name="f18b" id="f18b"
                                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                        @error('f18b')
+                                                        <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                            {{ $message }}
+                                                        </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                             </div>
@@ -410,22 +501,33 @@
                                                             Studi
                                                             (f18c)
                                                         </label>
-                                                        <input type="text" readonly
-                                                            placeholder="Silahkan pilih perguruan tinggi terlebih dahulu"
+                                                        <input type="text" name="f18c" id="f18c"
                                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                        @error('f18c')
+                                                        <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                            {{ $message }}
+                                                        </span>
+                                                        @enderror
                                                     </div>
                                                 </div>
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="f18d"
-                                                        class="block text-sm font-medium text-gray-700">Tanggal Masuk
+                                                        class="block text-sm font-medium text-gray-700">Tanggal
+                                                        Masuk
                                                         (f18d)
                                                     </label>
                                                     <input type="date" name="f18d" id="f18d"
                                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
+
+                                                    @error('f18d')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
-                                        <li class="mb-4">
+                                        <li class="mb-4 @error('f1201') text-red-500 @enderror">
                                             Sebutkan sumberdana dalam pembiayaan kuliah? * (bukan
                                             ketika Studi Lanjut) (f1201)
                                         </li>
@@ -498,8 +600,19 @@
                                             </div>
                                             <input type="text" name="f1202" id="f1202" placeholder="f1202"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
+
+                                            @error('f1201')
+                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
+                                            @error('f1202')
+                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
                                         </div>
-                                        <li class="mb-4">
+                                        <li class="mb-4 @error('f14') text-red-500 @enderror">
                                             Seberapa erat hubungan bidang studi dengan pekerjaan
                                             Anda? * (f14)
                                         </li>
@@ -550,8 +663,14 @@
                                                     (5)
                                                 </label>
                                             </div>
+
+                                            @error('f14')
+                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
                                         </div>
-                                        <li class="mb-4">
+                                        <li class="mb-4 @error('f14') text-red-500 @enderror">
                                             Tingkat pendidikan apa yang paling tepat/sesuai untuk
                                             pekerjaan anda saat ini? * (f15)
                                         </li>
@@ -593,8 +712,15 @@
                                                     Pendidikan Tinggi (4)
                                                 </label>
                                             </div>
+
+                                            @error('f15')
+                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
                                         </div>
-                                        <li class="mb-4">
+                                        <li
+                                            class="mb-4 @if($errors->has('f1761')||$errors->has('f1762')||$errors->has('f1763')||$errors->has('f1764')||$errors->has('f1765')||$errors->has('f1766')||$errors->has('f1767')||$errors->has('f1768')||$errors->has('f1769')||$errors->has('f1770')||$errors->has('f1771')||$errors->has('f1772')||$errors->has('f1773')||$errors->has('f1774')) text-red-500 @endif">
                                             Pada saat lulus, pada tingkat mana kompetensi di bawah
                                             ini anda : kuasai? (A) Pada saat ini, pada tingkat
                                             mana kompetensi di bawah ini diperlukan dalam
@@ -665,6 +791,16 @@
                                                         <td
                                                             class="px-[0.2rem] lg:px-3 py-3.5 text-[0.7rem] lg:text-[1rem] text-center">
                                                             (f1761) Etika (f1762)
+                                                            @error('f1761')
+                                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+                                                            @error('f1762')
+                                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_etika2" name="f1762" type="radio"
@@ -722,6 +858,16 @@
                                                             class="px-[0.2rem] lg:px-3 py-3.5 text-[0.7rem] lg:text-[1rem] text-center">
                                                             (f1763) Keahlian berdasarkan bidang ilmu
                                                             (f1764)
+                                                            @error('f1763')
+                                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+                                                            @error('f1764')
+                                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_bidangIlmu2" name="f1764" type="radio"
@@ -778,6 +924,16 @@
                                                         <td
                                                             class="px-[0.2rem] lg:px-3 py-3.5 text-[0.7rem] lg:text-[1rem] text-center">
                                                             (f1765) Bahasa Inggris (f1766)
+                                                            @error('f1765')
+                                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+                                                            @error('f1766')
+                                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_bahasaInggris2" name="f1766" type="radio"
@@ -834,6 +990,16 @@
                                                         <td
                                                             class="px-[0.2rem] lg:px-3 py-3.5 text-[0.7rem] lg:text-[1rem] text-center">
                                                             (f1767) Penggunaan Teknologi Informasi (f1768)
+                                                            @error('f1767')
+                                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+                                                            @error('f1768')
+                                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_teknologiInformasi2" name="f1768" type="radio"
@@ -890,6 +1056,16 @@
                                                         <td
                                                             class="px-[0.2rem] lg:px-3 py-3.5 text-[0.7rem] lg:text-[1rem] text-center">
                                                             (f1769) Komunikasi (f1770)
+                                                            @error('f1769')
+                                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+                                                            @error('f1770')
+                                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_komunikasi2" name="f1770" type="radio"
@@ -946,6 +1122,16 @@
                                                         <td
                                                             class="px-[0.2rem] lg:px-3 py-3.5 text-[0.7rem] lg:text-[1rem] text-center">
                                                             (f1771) Kerja sama tim (f1772)
+                                                            @error('f1771')
+                                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+                                                            @error('f1772')
+                                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_teamWork2" name="f1772" type="radio"
@@ -1002,6 +1188,16 @@
                                                         <td
                                                             class="px-[0.2rem] lg:px-3 py-3.5 text-[0.7rem] lg:text-[1rem] text-center">
                                                             (f1773) Pengembangan (f1774)
+                                                            @error('f1773')
+                                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
+                                                            @error('f1774')
+                                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                                {{ $message }}
+                                                            </span>
+                                                            @enderror
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_pengembangan2" name="f1774" type="radio"
@@ -1032,10 +1228,11 @@
                                                 </table>
                                             </div>
                                         </div>
-                                        <li class="mb-4">
+                                        <li
+                                            class="mb-4 @if($errors->has('f21')||$errors->has('f22')||$errors->has('f23')||$errors->has('f24')||$errors->has('f25')||$errors->has('f26')||$errors->has('f27')) text-red-500 @endif">
                                             Menurut anda seberapa besar penekanan pada metode
                                             pembelajaran dibawah ini dilaksanakan di program studi
-                                            anda?
+                                            anda?*
                                         </li>
                                         <div class="grid grid-cols-2 lg:grid-cols-3 gap-y-4">
                                             <div>
@@ -1089,6 +1286,11 @@
                                                             Sekali (5)
                                                         </label>
                                                     </div>
+                                                    @error('f21')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div>
@@ -1142,6 +1344,11 @@
                                                             Sekali (5)
                                                         </label>
                                                     </div>
+                                                    @error('f22')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div>
@@ -1195,6 +1402,11 @@
                                                             Sekali (5)
                                                         </label>
                                                     </div>
+                                                    @error('f23')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div>
@@ -1248,6 +1460,11 @@
                                                             Sekali (5)
                                                         </label>
                                                     </div>
+                                                    @error('f24')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div>
@@ -1301,6 +1518,11 @@
                                                             Sekali (5)
                                                         </label>
                                                     </div>
+                                                    @error('f25')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div>
@@ -1355,6 +1577,11 @@
                                                             Sekali (5)
                                                         </label>
                                                     </div>
+                                                    @error('f26')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                             <div>
@@ -1408,6 +1635,11 @@
                                                             Sekali (5)
                                                         </label>
                                                     </div>
+                                                    @error('f27')
+                                                    <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                        {{ $message }}
+                                                    </span>
+                                                    @enderror
                                                 </div>
                                             </div>
                                         </div>
@@ -1426,6 +1658,11 @@
                                                         class="focus:ring-indigo-500 h-10 w-20 text-indigo-600 text-sm border-gray-300" />
                                                     bulan sebelum lulus
                                                 </label>
+                                                @error('f302')
+                                                <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="sesudah" name="f301" type="radio"
@@ -1437,17 +1674,28 @@
                                                         class="focus:ring-indigo-500 h-10 w-20 text-indigo-600 text-sm border-gray-300" />
                                                     bulan sesudah lulus
                                                 </label>
+                                                @error('f303')
+                                                <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="tidak" name="f301" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
                                                     value="3" />(3)(f301)
                                                 <label for="tidak"
-                                                    class="ml-3 block text-sm font-medium text-gray-700">Saya tidak
+                                                    class="ml-3 block text-sm font-medium text-gray-700">Saya
+                                                    tidak
                                                     mencari
                                                     kerja
                                                 </label>
                                             </div>
+                                            @error('f301')
+                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
                                         </div>
                                         <li class="mb-4">
                                             Bagaimana anda mencari pekerjaan tersebut? Jawaban
@@ -1456,7 +1704,7 @@
                                         <div class="space-y-4 mb-4">
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="0_f401" name="f401" type="checkbox"
+                                                    <input id="0_f401" name="f401" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1469,7 +1717,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="1_f402" name="f402" type="checkbox"
+                                                    <input id="1_f402" name="f402" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1481,7 +1729,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="2_f403" name="f403" type="checkbox"
+                                                    <input id="2_f403" name="f403" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1493,7 +1741,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="3_f404" name="f404" type="checkbox"
+                                                    <input id="3_f404" name="f404" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1505,7 +1753,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="4_f405" name="f405" type="checkbox"
+                                                    <input id="4_f405" name="f405" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1516,7 +1764,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="5_f406" name="f406" type="checkbox"
+                                                    <input id="5_f406" name="f406" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1527,7 +1775,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="6_f407" name="f407" type="checkbox"
+                                                    <input id="6_f407" name="f407" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1540,7 +1788,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="7_f408" name="f408" type="checkbox"
+                                                    <input id="7_f408" name="f408" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1553,7 +1801,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="8_f409" name="f409" type="checkbox"
+                                                    <input id="8_f409" name="f409" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1565,7 +1813,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="9_f410" name="f410" type="checkbox"
+                                                    <input id="9_f410" name="f410" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1577,7 +1825,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="10_f411" name="f411" type="checkbox"
+                                                    <input id="10_f411" name="f411" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1590,7 +1838,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="11_f412" name="f412" type="checkbox"
+                                                    <input id="11_f412" name="f412" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1602,7 +1850,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="12_f413" name="f413" type="checkbox"
+                                                    <input id="12_f413" name="f413" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1614,7 +1862,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="13_f414" name="f414" type="checkbox"
+                                                    <input id="13_f414" name="f414" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1627,7 +1875,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="14_f415" name="f415" type="checkbox"
+                                                    <input id="14_f415" name="f415" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />(0/1)
                                                 </div>
                                                 <div class="ml-3 text-sm">
@@ -1638,6 +1886,11 @@
                                             </div>
                                             <input type="text" name="f4016" id="f4016" placeholder="f4016"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            @error('f4016')
+                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
                                         </div>
                                         <li class="mb-4">
                                             Berapa perusahaan/instansi/institusi yang sudah anda
@@ -1653,6 +1906,11 @@
                                                 <p class="my-auto ml-2">
                                                     perusahaan/instansi/institusi
                                                 </p>
+                                                @error('f6')
+                                                <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <li class="mb-4">
@@ -1668,6 +1926,11 @@
                                                 <p class="my-auto ml-2">
                                                     perusahaan/instansi/institusi
                                                 </p>
+                                                @error('f7')
+                                                <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                    {{ $message }}
+                                                </span>
+                                                @enderror
                                             </div>
                                         </div>
                                         <li class="mb-4">
@@ -1691,7 +1954,7 @@
                                         </li>
                                         <div class="space-y-4 mb-4">
                                             <div class="flex items-center">
-                                                <input id="1_activeSearch" name="f1001" type="radio"
+                                                <input id="1_activeSearch" name="f1001" value="1" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
                                                 <label for="1_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Tidak
@@ -1699,7 +1962,7 @@
                                                 </label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input id="2_activeSearch" name="f1001" type="radio"
+                                                <input id="2_activeSearch" name="f1001" value="2" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
                                                 <label for="2_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Tidak, tapi
@@ -1709,7 +1972,7 @@
                                                 </label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input id="3_activeSearch" name="f1001" type="radio"
+                                                <input id="3_activeSearch" name="f1001" value="3" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
                                                 <label for="3_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Ya, saya akan
@@ -1719,7 +1982,7 @@
                                                 </label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input id="4_activeSearch" name="f1001" type="radio"
+                                                <input id="4_activeSearch" name="f1001" value="4" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
                                                 <label for="4_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Ya, tapi saya
@@ -1729,7 +1992,7 @@
                                                 </label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input id="5_activeSearch" name="f1001" type="radio"
+                                                <input id="5_activeSearch" name="f1001" value="5" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
                                                 <label for="5_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Lainnya
@@ -1738,6 +2001,16 @@
                                             </div>
                                             <input type="text" name="f1002" id="f1002" placeholder="f1002"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            @error('f1001')
+                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
+                                            @error('f1002')
+                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
                                         </div>
                                         <li class="mb-4">
                                             Jika menurut anda pekerjaan anda saat ini tidak sesuai
@@ -1747,7 +2020,7 @@
                                         <div class="space-y-4 mb-4">
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="0_f1601" name="f1601" type="checkbox"
+                                                    <input id="0_f1601" name="f1601" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                                     (0/1)
                                                 </div>
@@ -1762,7 +2035,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="1_f1602" name="f1602" type="checkbox"
+                                                    <input id="1_f1602" name="f1602" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                                     (0/1)
                                                 </div>
@@ -1775,7 +2048,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="2_f1603" name="f1603" type="checkbox"
+                                                    <input id="2_f1603" name="f1603" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                                     (0/1)
                                                 </div>
@@ -1789,7 +2062,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="3_f1604" name="f1604" type="checkbox"
+                                                    <input id="3_f1604" name="f1604" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                                     (0/1)
                                                 </div>
@@ -1804,7 +2077,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="4_f1605" name="f1605" type="checkbox"
+                                                    <input id="4_f1605" name="f1605" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                                     (0/1)
                                                 </div>
@@ -1819,7 +2092,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="5_f1606" name="f1606" type="checkbox"
+                                                    <input id="5_f1606" name="f1606" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                                     (0/1)
                                                 </div>
@@ -1832,7 +2105,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="6_f1607" name="f1607" type="checkbox"
+                                                    <input id="6_f1607" name="f1607" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                                     (0/1)
                                                 </div>
@@ -1846,7 +2119,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="7_f1608" name="f1608" type="checkbox"
+                                                    <input id="7_f1608" name="f1608" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                                     (0/1)
                                                 </div>
@@ -1860,7 +2133,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="8_f1609" name="f1609" type="checkbox"
+                                                    <input id="8_f1609" name="f1609" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                                     (0/1)
                                                 </div>
@@ -1875,7 +2148,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="9_f1610" name="f1610" type="checkbox"
+                                                    <input id="9_f1610" name="f1610" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                                     (0/1)
                                                 </div>
@@ -1889,7 +2162,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="10_f1611" name="f1611" type="checkbox"
+                                                    <input id="10_f1611" name="f1611" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                                     (0/1)
                                                 </div>
@@ -1903,7 +2176,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="11_f1612" name="f1612" type="checkbox"
+                                                    <input id="11_f1612" name="f1612" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                                     (0/1)
                                                 </div>
@@ -1918,7 +2191,7 @@
                                             </div>
                                             <div class="relative flex items-start">
                                                 <div class="flex items-center h-5">
-                                                    <input id="12_f1613" name="f1613" type="checkbox"
+                                                    <input id="12_f1613" name="f1613" type="checkbox" value="1"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded" />
                                                     (0/1)
                                                 </div>
@@ -1930,6 +2203,11 @@
                                             </div>
                                             <input type="text" name="f1614" id="f1614" placeholder="f1614"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                            @error('f1614')
+                                            <span class="ml-1 block text-sm font-medium text-pink-500">
+                                                {{ $message }}
+                                            </span>
+                                            @enderror
                                         </div>
                                     </ol>
                                 </div>
@@ -2096,3 +2374,12 @@
         });
 </script>
 @endpush
+@if(Session::get('success'))
+@push('addon-after-script')
+<script>
+    setInterval(() => {
+            $('.toast').toast('hide');
+        }, 2500);
+</script>
+@endpush
+@endif

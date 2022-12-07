@@ -33,10 +33,11 @@ return new class extends Migration
             $table->integer('f506')->nullable();
 
             // Dimana lokasi tempat Anda bekerja?
-            $table->integer('f5a1')->nullable(); //Provinsi
-            $table->integer('f5a2')->nullable(); //Kota/Kabupaten
-            
+            $table->string('f5a1')->nullable(); //Provinsi
+            $table->string('f5a2')->nullable(); //Kota/Kabupaten
+
             $table->integer('f1101')->nullable(); //Apa jenis perusahaan/intansi/institusi tempat anda bekerja sekarang?
+            $table->integer('f1102')->nullable(); //Apa jenis perusahaan/intansi/institusi tempat anda bekerja sekarang?
             $table->string('f5b')->nullable(); //Apa nama perusahaan/kantor tempat Anda bekerja?
             $table->integer('f5c')->nullable(); //Bila berwiraswasta, apa posisi/jabatan Anda saat ini? (Apabila 1 Menjawab [3] wiraswasta) 
             $table->integer('f5d')->nullable(); //Apa tingkat tempat kerja Anda? 
@@ -51,7 +52,7 @@ return new class extends Migration
             $table->string('f1202')->nullable(); //jika menjawab Lainnya (f1201), tuliskan (7)
             $table->integer('f14'); //Seberapa erat hubungan bidang studi dengan pekerjaan Anda?
             $table->integer('f15'); //Tingkat pendidikan apa yang paling tepat/sesuai untuk pekerjaan anda saat ini? 
-            
+
             //pada tingkat mana kompetensi di bawah ini anda : kuasai? Pada saat ini (A)
             //pada tingkat mana kompetensi di bawah ini diperlukan dalam pekerjaan? (B)
             $table->integer('f1761'); //A. etika

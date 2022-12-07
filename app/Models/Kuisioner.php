@@ -28,6 +28,7 @@ class Kuisioner extends Model
         'f5a1',
         'f5a2',
         'f1101',
+        'f1102',
         'f5b',
         'f5c',
         'f5d',
