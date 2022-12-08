@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpParser\Node\Stmt\Return_;
 
@@ -133,8 +134,20 @@ class MahasiswaController extends Controller
     /**
      * @return \Illuminate\Support\Collection
      */
-    public function import()
+    public function import(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'data_mahasiswa' => 'required|mimes:csv|max:10000',
+        ], [
+            'mimes'    => 'file :attribute harus bertype .csv',
+            'required' => 'file :attribute tidak boleh kosong',
+            'max'      => ':attribute maksimal :value',
+        ]);
+
+        if ($validator->fails()) {
+            return redirect()->route('mahasiswa.index')->with('error', $validator->errors()->first());
+        }
+
         try {
             Excel::import(new DataMahasiswaImport, request()->file('data_mahasiswa'));
             return redirect()->route('mahasiswa.index')->with('success', 'Import data berhasil');
