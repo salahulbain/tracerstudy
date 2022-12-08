@@ -319,6 +319,16 @@
 @endpush
 @endif
 
+@if(Session::get('error'))
+@push('addon-after-script')
+<script>
+    setInterval(() => {
+            $('.toast').toast('hide');
+        }, 2500);
+</script>
+@endpush
+@endif
+
 @if(Session::get('info'))
 @push('addon-after-script')
 <script>

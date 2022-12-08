@@ -135,8 +135,12 @@ class MahasiswaController extends Controller
      */
     public function import()
     {
-        Excel::import(new DataMahasiswaImport, request()->file('data_mahasiswa'));
-        return back();
+        try {
+            Excel::import(new DataMahasiswaImport, request()->file('data_mahasiswa'));
+            return redirect()->route('mahasiswa.index')->with('success', 'Import data berhasil');
+        } catch (\Throwable $th) {
+            return redirect()->route('mahasiswa.index')->with('error', 'Terjadi kesalahan pada file');
+        }
     }
 
     /**
