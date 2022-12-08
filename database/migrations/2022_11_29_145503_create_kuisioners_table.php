@@ -24,7 +24,7 @@ return new class extends Migration
             $table->string('emailmsmh');
             $table->integer('tahun_lulus');
             $table->bigInteger('nik');
-            $table->bigInteger('npwp');
+            $table->bigInteger('npwp')->nullable();
             // section pertanyaan
             $table->integer('f8'); //Jelaskan status Anda saat ini? 
             $table->integer('f504')->nullable(); //Apakah Anda telah mendapatkan pekerjaan <= 6 bulan / termasuk bekerja sebelum lulus?
