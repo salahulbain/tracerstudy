@@ -63,13 +63,21 @@
                 <li class="sidebar-item {{ Request::is('admin/kuisioner*') ? 'active':'' }}">
                     <a href="{{ route('kuisioner.index') }}" class="sidebar-link">
                         <i class="bi bi-file-earmark-text-fill"></i>
+                        @if (Auth::user()->role == "ADMIN")
+                        <span>Responden Kuisioner</span>
+                        @elseif(Auth::user()->role == "USER")
                         <span>Isi Kuisioner</span>
+                        @endif
                     </a>
                 </li>
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link">
                         <i class="bi bi-printer-fill"></i>
+                        @if (Auth::user()->role == "ADMIN")
+                        <span>Cetak Laporan</span>
+                        @elseif(Auth::user()->role == "USER")
                         <span>Cetak Hasil</span>
+                        @endif
                     </a>
                 </li>
 
