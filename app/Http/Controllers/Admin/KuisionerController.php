@@ -6,6 +6,7 @@ use App\Exports\KuisionerExport;
 use App\Http\Controllers\Controller;
 use App\Models\DataMahasiswa;
 use App\Models\Kuisioner;
+use DataTables;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -15,7 +16,7 @@ class KuisionerController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('admin')->only(['show', 'create', 'edit', 'destroy', 'export']);
+        $this->middleware('admin')->only(['show', 'create', 'edit', 'destroy', 'delete', 'export']);
     }
 
     /**
@@ -23,9 +24,22 @@ class KuisionerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         if (Auth::user()->role == "ADMIN") {
+            if ($request->ajax()) {
+                // note: add select('tabel.*') untuk menghindari abigu id saat ada relasi di eager yajra datatable
+                $data = Kuisioner::query();
+                return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('status', function ($row) {
+                        $btn = '<a href="#" class="m-1 badge text-bg-success text-sm">Finish</a>';
+                        $btn .= '<a href="#kuisionerModal" class="badge text-bg-danger text-sm" title="Hapus" data-bs-toggle="modal" data-bs-target="#kuisionerModal" data-remote="' . route('kuisioner.delete', $row->id) . '" data-title="Yakin ingin menghapus ?">Hapus</a>';
+                        return $btn;
+                    })
+                    ->rawColumns(['status'])
+                    ->make(true);
+            }
             return view('pages.admin.kuisioner.index-admin');
         }
         if (Auth::user()->role == "USER") {
@@ -271,14 +285,22 @@ class KuisionerController extends Controller
         }
     }
 
+    public function delete(Kuisioner $kuisioner, $id)
+    {
+        $item = Kuisioner::findOrFail($id);
+        return view('pages.admin.kuisioner.delete', compact('item'));
+    }
+
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Kuisioner  $kuisioner
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Kuisioner $kuisioner)
+    public function destroy($id)
     {
-        //
+        $kuisioner = Kuisioner::findOrFail($id);
+        $kuisioner->delete();
+        return redirect()->route('kuisioner.index')->with('success', 'Data responden berhasil dihapus');
     }
 }

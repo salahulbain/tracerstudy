@@ -23,6 +23,7 @@ Route::get('/', function () {
 Route::prefix('admin')->middleware(['auth'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/mahasiswa/delete/{id}', [MahasiswaController::class, 'delete'])->name('mahasiswa.delete');
+    Route::get('/kuisioner/delete/{id}', [KuisionerController::class, 'delete'])->name('kuisioner.delete');
     Route::get('/mahasiswa/export', [MahasiswaController::class, 'export'])->name('mahasiswa.export');
     Route::get('/kuisioner/export', [KuisionerController::class, 'export'])->name('kuisioner.export');
     Route::post('/kuisioner/getkabkota', [KuisionerController::class, 'getkabkota'])->name('getkabkota');
