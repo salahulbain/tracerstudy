@@ -30,12 +30,12 @@ class DataMahasiswaImport implements ToModel, WithHeadingRow, WithUpserts
         Validator::make($row, [
             'kode_pt'        => 'required|numeric',
             'kode_prodi'     => 'required|numeric',
-            'npm'            => 'required|numeric|unique:users,username|unique:data_mahasiswas,npm,NULL,id,deleted_at,NULL',
+            'npm'            => 'required|numeric',
             'nama_mahasiswa' => 'required',
             'no_hp'          => 'required',
-            'email'          => 'required|email|unique:users,email|unique:data_mahasiswas,email,NULL,id,deleted_at,NULL',
+            'email'          => 'required|email',
             'tahun_lulus'    => 'required',
-            'nik'            => 'required|numeric|digits:16|unique:data_mahasiswas,nik,NULL,id,deleted_at,NULL',
+            'nik'            => 'required|numeric|digits:16',
             'npwp'           => 'nullable|numeric',
         ], [
             'required' => ':attribute tidak boleh kosong',
