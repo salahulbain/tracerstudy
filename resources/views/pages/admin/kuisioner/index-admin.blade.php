@@ -50,7 +50,8 @@
 
             <div class="card shadow">
                 <div class="card-header">
-                    <a href="{{ route('kuisioner.export') }}" class="btn btn-success"><i class="bi bi-filetype-csv"></i>
+                    <a href="{{ route('kuisioner.export') }}" class="btn btn-success"><i
+                            class="bi bi-filetype-xlsx"></i>
                         Download Responden</a>
                 </div>
                 <div class="card-body">

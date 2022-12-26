@@ -41,7 +41,7 @@ class DataMahasiswaImport implements ToModel, WithHeadingRow, WithUpserts
             'required' => ':attribute tidak boleh kosong',
             'numeric'  => ':attribute wajib berupa angka',
             'digits'   => ':attribute wajib berjumlah 16 angka',
-            'unique'   => ':attribute sudah terdaftar',
+            'unique'   => ':attribute terdeteksi ganda/telah terdaftar',
         ])->validate();
 
         $data_mahasiswa =  DataMahasiswa::updateOrCreate([

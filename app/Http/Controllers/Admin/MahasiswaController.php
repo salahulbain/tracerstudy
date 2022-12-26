@@ -136,7 +136,7 @@ class MahasiswaController extends Controller
     public function import(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'data_mahasiswa' => 'required|mimes:csv|max:10000',
+            'data_mahasiswa' => 'required|mimes:xls,xlsx,csv|max:10000',
         ], [
             'mimes'    => 'file :attribute harus bertype .csv',
             'required' => 'file :attribute tidak boleh kosong',

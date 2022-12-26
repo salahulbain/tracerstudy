@@ -296,7 +296,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-outline-secondary float-right" data-bs-dismiss="modal"
                         aria-label="Close">Batal</button>
-                    <button type="submit" class="btn btn-success float-right">Upload Data Mahasiswa</button>
+                    <button type="submit" class="btn btn-success float-right upload">Upload Data Mahasiswa</button>
                 </div>
             </form>
         </div>
@@ -324,7 +324,7 @@
 <script>
     setInterval(() => {
             $('.toast').toast('hide');
-        }, 2500);
+        }, 3000);
 </script>
 @endpush
 @endif
@@ -398,6 +398,11 @@
             modal.find('.modal-body').load(button.data("remote"));
             modal.find('.modal-title').html(button.data("title"));
         });
+
+        // take on form submit instead
+        // $('.upload').click(function () {
+        //     $('.upload').html('<span class="bi bi-arrow-clockwise spiner mr-2"></span>Uploading...');
+        // })
 </script>
 @endpush
 @endif

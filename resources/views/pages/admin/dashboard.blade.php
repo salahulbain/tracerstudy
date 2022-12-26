@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold">Total Seluruh Prodi</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
+                                    <h6 class="font-extrabold mb-0">7</h6>
                                 </div>
                             </div>
                         </div>
@@ -104,60 +104,27 @@
                     <h4>Recent Submited</h4>
                 </div>
                 <div class="card-content pb-4">
+                    @forelse ($recent_submit as $item)
+                    <div class="recent-message d-flex px-4 py-3">
+                        <div class="avatar avatar-lg">
+                            <img src="assets/images/faces/{{ $loop->iteration }}.jpg" />
+                        </div>
+                        <div class="name ms-4">
+                            <h5 class="mb-1">{{ $item->nmmhsmsmh }}</h5>
+                            <h6 class="text-muted mb-0">{{ $item->nimhsmsmh }}</h6>
+                        </div>
+                    </div>
+                    @empty
                     <div class="recent-message d-flex px-4 py-3">
                         <div class="avatar avatar-lg">
                             <img src="assets/images/faces/4.jpg" />
                         </div>
                         <div class="name ms-4">
-                            <h5 class="mb-1">Hank Schrader</h5>
-                            <h6 class="text-muted mb-0">@johnducky</h6>
+                            <h5 class="mb-1">No Data</h5>
+                            <h6 class="text-muted mb-0">No Data</h6>
                         </div>
                     </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="assets/images/faces/5.jpg" />
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">Dean Winchester</h5>
-                            <h6 class="text-muted mb-0">@imdean</h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="assets/images/faces/1.jpg" />
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">John Dodol</h5>
-                            <h6 class="text-muted mb-0">@dodoljohn</h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="assets/images/faces/1.jpg" />
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">John Dodol</h5>
-                            <h6 class="text-muted mb-0">@dodoljohn</h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="assets/images/faces/1.jpg" />
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">John Dodol</h5>
-                            <h6 class="text-muted mb-0">@dodoljohn</h6>
-                        </div>
-                    </div>
-                    <div class="recent-message d-flex px-4 py-3">
-                        <div class="avatar avatar-lg">
-                            <img src="assets/images/faces/1.jpg" />
-                        </div>
-                        <div class="name ms-4">
-                            <h5 class="mb-1">John Dodol</h5>
-                            <h6 class="text-muted mb-0">@dodoljohn</h6>
-                        </div>
-                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>
@@ -176,3 +143,31 @@
     </section>
 </div>
 @endsection
+
+@push('addon-after-script')
+<script>
+    var optionsProfileVisit = {
+        annotations: { position: "back" },
+        dataLabels: { enabled: !1 },
+        chart: { type: "bar", height: 300 },
+        fill: { opacity: 1 },
+        plotOptions: {},
+        series: [
+            {
+                name: "mahasiswa",
+                data: [{{ $pai }}, {{ $pba }}, {{ $mpi }}, {{ $sas }}, {{ $ekos }}, {{ $kpi }}, {{ $pmi }}],
+            },
+        ],
+        colors: "#435ebe",
+        xaxis: {
+            categories: ["PAI", "PBA", "MPI", "SAS", "EKOS", "KPI", "PMI"],
+        },
+    };
+
+    var chartProfileVisit = new ApexCharts(
+        document.querySelector("#chart-profile-visit"),
+        optionsProfileVisit
+    );
+    chartProfileVisit.render();
+</script>
+@endpush
