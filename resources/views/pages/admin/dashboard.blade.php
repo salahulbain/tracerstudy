@@ -15,7 +15,7 @@
         <div class="col-12 col-lg-9">
             <div class="row">
                 <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body px-4 py-4-5">
                             <div class="row">
                                 <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
@@ -27,14 +27,14 @@
                                     <h6 class="text-muted font-semibold">
                                         Total Mahasiswa
                                     </h6>
-                                    <h6 class="font-extrabold mb-0">112.000</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $total_mhs }}</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body px-4 py-4-5">
                             <div class="row">
                                 <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
@@ -44,14 +44,14 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold">Total Telah Isi Survey</h6>
-                                    <h6 class="font-extrabold mb-0">183.000</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $total_isi_survey }}</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body px-4 py-4-5">
                             <div class="row">
                                 <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
@@ -61,14 +61,14 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold">Total Belum Isi Survey</h6>
-                                    <h6 class="font-extrabold mb-0">80.000</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $total_belum_isi_survey }}</h6>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-body px-4 py-4-5">
                             <div class="row">
                                 <div class="col-md-4 col-lg-12 col-xl-12 col-xxl-5 d-flex justify-content-start">
@@ -78,7 +78,7 @@
                                 </div>
                                 <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                                     <h6 class="text-muted font-semibold">Total Seluruh Prodi</h6>
-                                    <h6 class="font-extrabold mb-0">7</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $total_prodi }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -87,7 +87,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <div class="card">
+                    <div class="card shadow">
                         <div class="card-header">
                             <h4>Jumlah Mahasiswa</h4>
                         </div>
@@ -99,11 +99,11 @@
             </div>
         </div>
         <div class="col-12 col-lg-3">
-            <div class="card">
+            <div class="card shadow" style="min-height:97vh;">
                 <div class="card-header">
                     <h4>Recent Submited</h4>
                 </div>
-                <div class="card-content pb-4">
+                <div class="card-content pb-4 min-h-full">
                     @forelse ($recent_submit as $item)
                     <div class="recent-message d-flex px-4 py-3">
                         <div class="avatar avatar-lg">
@@ -130,9 +130,9 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="card">
+                <div class="card shadow">
                     <div class="card-header">
-                        <h4>Jenis Kelamin</h4>
+                        <h4>Status Mahasiswa</h4>
                     </div>
                     <div class="card-body">
                         <div id="chart-visitors-profile"></div>
@@ -164,10 +164,24 @@
         },
     };
 
+    let optionsVisitorsProfile = {
+        series: [70, 30, 30, 30, 30],
+        labels: ["Bekerja Full/Part Time", "Belum Mungkin Bekerja", "Wiraswasta", "Melanjutkan Pendidikan","Sedang Mencari Kerja"],
+        colors: ["#435ebe", "#dc3545", "#fd7e14", "#20c997", "#ffc107"],
+        chart: { type: "donut", width: "100%", height: "350px" },
+        legend: { position: "bottom" },
+        plotOptions: { pie: { donut: { size: "30%" } } },
+    };
+
     var chartProfileVisit = new ApexCharts(
         document.querySelector("#chart-profile-visit"),
         optionsProfileVisit
+    ),
+    chartVisitorsProfile = new ApexCharts(
+        document.getElementById("chart-visitors-profile"),
+        optionsVisitorsProfile
     );
-    chartProfileVisit.render();
+    chartProfileVisit.render(),
+    chartVisitorsProfile.render();
 </script>
 @endpush
