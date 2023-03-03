@@ -82,12 +82,14 @@
                 </li>
 
                 <li class="sidebar-title">Account</li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                <li class="sidebar-item {{ Request::is('admin/profile*') ? 'active':'' }}">
+                    <a href="{{ route('profile.edit') }}" class="sidebar-link">
                         <i class="bi bi-key-fill"></i>
-                        <span>Change Password</span>
+                        <span>Profile Management</span>
                     </a>
                 </li>
+
+                <hr class="my-4">
 
                 <li class="sidebar-item">
                     <a href="#" class="sidebar-link text-white bg-danger" data-bs-toggle="modal"

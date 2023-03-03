@@ -4,15 +4,15 @@
         {{ $logo }}
     </div>
 
-    <div class="w-full sm:max-w-md mt-6 px-6 py-6 bg-white shadow-2xl overflow-hidden sm:rounded-lg">
+    <div class="w-full sm:max-w-md mt-6 px-6 py-6 bg-white shadow-2xl overflow-hidden sm:rounded-lg dark:bg-slate-700">
         {{ $slot }}
         <hr class="mt-6">
-        <div class="text-center mt-4 text-slate-600">
+        <div class="text-center mt-4 text-slate-600 dark:text-white">
             &copy;
             <br>
             {{ date('Y',time()) }}
             <br>
-            <span class="text-slate-500">Powered by: Tracer Study IAIA 2.0</span> <br>
+            <span class="text-slate-500 dark:text-white">Powered by: Tracer Study IAIA 2.0</span> <br>
             Institut Agama Islam Al-Aziziyah
         </div>
     </div>
