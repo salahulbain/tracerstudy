@@ -16,14 +16,47 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name'       => 'Admin Tracer Study',
-            'email'      => 'admin@email.com',
-            'password'   => Hash::make('password'),
-            'user_id'    => 0,
-            'role'       => 'ADMIN',
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+        DB::table('users')->insert(
+            [
+                'name'       => 'Admin Tracer Study',
+                'email'      => 'amiruddin@iaialaziziyah.ac.id',
+                'password'   => Hash::make('S4m4l4ng4'),
+                'user_id'    => 0,
+                'role'       => 'ADMIN',
+                'username'   => '828',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name'       => 'Admin Tracer Study',
+                'email'      => 'zahrulfuadi@iaialaziziyah.ac.id',
+                'password'   => Hash::make('S4m4l4ng4'),
+                'user_id'    => 0,
+                'role'       => 'ADMIN',
+                'username'   => '848',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name'       => 'Admin Tracer Study',
+                'email'      => 'firman@iaialaziziyah.ac.id',
+                'password'   => Hash::make('S4m4l4ng4'),
+                'user_id'    => 0,
+                'role'       => 'ADMIN',
+                'username'   => '838',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name'       => 'Admin Tracer Study',
+                'email'      => 'admin@tracerstudy.iaialaziziyah.ac.id',
+                'password'   => Hash::make('AdminTracerStudy!'),
+                'user_id'    => 0,
+                'role'       => 'ADMIN',
+                'username'   => '858',
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
     }
 }
