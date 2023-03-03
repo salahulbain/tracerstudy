@@ -23,8 +23,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        // uncoment binding public folder after upload to server if different folder app and public
+        // $this->app->bind('path.public', function () {
+        //     return realpath(base_path() . '/../public_html/tracerstudy.iaialaziziyah.ac.id');
+        // });
+
         // force https
-        if($this->app->environment('production')) {
+        if ($this->app->environment('production')) {
             \URL::forceScheme('https');
         }
     }
