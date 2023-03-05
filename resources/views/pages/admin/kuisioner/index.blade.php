@@ -2,7 +2,7 @@
 @section('title','Kuisioner')
 @section('content')
 <header class="mb-3">
-    <a href="#" class="burger-btn d-block d-xl-none">
+    <a href="#" class="burger-btn d-block">
         <i class="bi bi-justify fs-3"></i>
     </a>
 </header>
@@ -13,15 +13,19 @@
 <div class="page-content">
     <section class="row" style="min-height: 80vh;">
         <div class="col-12">
-            @if ($message = Session::get('success'))
+            @if ($message = Session::get('success') || $message = Session::get('errors'))
             <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
-                <div class="toast show fade align-items-center text-bg-success border-0" role="alert" aria-live="polite"
-                    aria-atomic="true">
+                <div class="toast show fade align-items-center {{ Session::get('success') ? 'text-bg-success' : 'text-bg-danger' }} border-0"
+                    role="alert" aria-live="polite" aria-atomic="true">
                     <div role="alert" aria-live="assertive" aria-atomic="true">
                         <div class="d-flex">
                             <div class="toast-body">
-                                <i class="bi bi-check-circle m-1"></i>
+                                <i class="bi {{ Session::get('success') ? 'bi-check-circle' : 'bi-x-circle' }} m-1"></i>
+                                @if (Session::get('errors'))
+                                Terjadi kesalahan pada isian kuisioner, periksa kembali jawaban anda!.
+                                @else
                                 {{ $message }}.
+                                @endif
                             </div>
                             <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
                                 aria-label="Close"></button>
@@ -193,6 +197,7 @@
                                             </div>
                                             @enderror
                                         </div>
+
                                         <li class="mb-4 @error('f504') text-red-500 @enderror">
                                             Apakah Anda telah mendapatkan pekerjaan &lt;= 6 bulan
                                             / termasuk bekerja sebelum lulus? (f504)
@@ -212,7 +217,7 @@
                                                 <div class="flex items-center">
                                                     <input id="pekerjaan-tidak" name="f504" type="radio"
                                                         class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                        value="0" />
+                                                        value="0" {{ old('f504')==0 ? 'checked' :'' }} />
                                                     <label for="pekerjaan-tidak"
                                                         class="ml-3 block text-sm font-medium text-gray-700">
                                                         Tidak
@@ -227,6 +232,7 @@
                                                 </div>
                                                 @enderror
                                             </div>
+
                                             <div class="grid grid-cols-6 gap-6 mt-4">
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="getJob"
@@ -236,7 +242,7 @@
                                                         (f502)
                                                     </label>
                                                     <input type="number" name="f502" id="getJob"
-                                                        value="{{ old('f502') }}"
+                                                        value="{{ old('f502') ?? '' }}"
                                                         class="mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                     @error('f502')
                                                     <span class="ml-1 block text-sm font-medium text-pink-500">
@@ -250,7 +256,8 @@
                                                         pendapatan Anda per bulan?
                                                         (take home pay)? (f505)
                                                     </label>
-                                                    <input type="number" name="f505" id="f505" value="{{ old('f505') }}"
+                                                    <input type="number" name="f505" id="f505"
+                                                        value="{{ old('f505') ??'' }}"
                                                         class="mt-1 py-2 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                     @error('f505')
                                                     <span class="ml-1 block text-sm font-medium text-pink-500">
@@ -310,7 +317,7 @@
                                             <div class="flex items-center">
                                                 <input id="1_typeCompany" name="f1101" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="1" />
+                                                    value="1" {{ old('f1101')==1 ? 'checked' :'' }} />
                                                 <label for="1_typeCompany"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Intansi
                                                     pemerintah
@@ -320,7 +327,7 @@
                                             <div class="flex items-center">
                                                 <input id="6_typeCompany" name="f1101" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="6" />
+                                                    value="6" {{ old('f1101')==6 ? 'checked' :'' }} />
                                                 <label for="6_typeCompany"
                                                     class="ml-3 block text-sm font-medium text-gray-700">BUMN/BUMD
                                                     (6)
@@ -329,7 +336,7 @@
                                             <div class="flex items-center">
                                                 <input id="7_typeCompany" name="f1101" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="7" />
+                                                    value="7" {{ old('f1101')==7 ? 'checked' :'' }} />
                                                 <label for="7_typeCompany"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Institusi/Organisasi
                                                     Multilateral (7)
@@ -338,7 +345,7 @@
                                             <div class="flex items-center">
                                                 <input id="2_typeCompany" name="f1101" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="2" />
+                                                    value="2" {{ old('f1101')==2 ? 'checked' :'' }} />
                                                 <label for="2_typeCompany"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Organisasi
                                                     non-profit/Lembaga Swadaya Masyarakat
@@ -348,7 +355,7 @@
                                             <div class="flex items-center">
                                                 <input id="3_typeCompany" name="f1101" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="3" />
+                                                    value="3" {{ old('f1101')==3 ? 'checked' :'' }} />
                                                 <label for="3_typeCompany"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Perusahaan
                                                     swasta
@@ -358,7 +365,7 @@
                                             <div class="flex items-center">
                                                 <input id="4_typeCompany" name="f1101" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="4" />
+                                                    value="4" {{ old('f1101')==4 ? 'checked' :'' }} />
                                                 <label for="4_typeCompany"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Wiraswasta/perusahaan
                                                     sendiri (4)
@@ -367,7 +374,7 @@
                                             <div class="flex items-center">
                                                 <input id="5_typeCompany" name="f1101" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="5" />
+                                                    value="5" {{ old('f1101')==5 ? 'checked' :'' }} />
                                                 <label for="5_typeCompany"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Lainnya,
                                                     tuliskan
@@ -375,6 +382,7 @@
                                                 </label>
                                             </div>
                                             <input type="text" name="f1102" id="f1102" placeholder="f1102"
+                                                value="{{ old('f1102') ?? '' }}"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('f1101')
                                             <span class="ml-1 block text-sm font-medium text-pink-500">
@@ -387,6 +395,7 @@
                                             </span>
                                             @enderror
                                         </div>
+
                                         <li class="mb-4 @error('f5b') text-red-500 @enderror">
                                             Apa nama perusahaan/kantor tempat Anda bekerja? (f5b)
                                         </li>
@@ -394,6 +403,7 @@
                                             <div class="grid grid-cols-6 gap-6 mt-4">
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <input type="text" name="f5b" id="f5b"
+                                                        value="{{ old('f5b') ?? '' }}"
                                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                     @error('f5b')
                                                     <span class="ml-1 block text-sm font-medium text-pink-500">
@@ -403,6 +413,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <li class="mb-4 @error('f5c') text-red-500 @enderror">
                                             Bila berwiraswasta, apa posisi/jabatan Anda saat ini?
                                             (Apabila 1 Menjawab [3] wiraswasta) (f5c)
@@ -426,6 +437,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <li class="mb-4 @error('f5d') text-red-500 @enderror">
                                             Apa tingkat tempat kerja Anda? (f5d)
                                         </li>
@@ -454,7 +466,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <li class="mb-4 @error('f5d') text-red-500 @enderror">Pertanyaan studi lanjut
+
+                                        <li class="mb-4 @error('f18a') text-red-500 @enderror">Pertanyaan studi lanjut
                                         </li>
                                         <div class="mb-4">
                                             <div class="grid grid-cols-6 gap-6 mt-4">
@@ -527,6 +540,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <li class="mb-4 @error('f1201') text-red-500 @enderror">
                                             Sebutkan sumberdana dalam pembiayaan kuliah? * (bukan
                                             ketika Studi Lanjut) (f1201)
@@ -535,7 +549,7 @@
                                             <div class="flex items-center">
                                                 <input id="1_sumberDana" name="f1201" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="1" />
+                                                    value="1" {{ old('f1201')==1?'checked':'' }} />
                                                 <label for="1_sumberDana"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Biaya
                                                     Sendiri/Keluarga (1)
@@ -544,7 +558,7 @@
                                             <div class="flex items-center">
                                                 <input id="2_sumberDana" name="f1201" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="2" />
+                                                    value="2" {{ old('f1201')==2?'checked':'' }} />
                                                 <label for="2_sumberDana"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Beasiswa ADIK
                                                     (2)
@@ -553,7 +567,7 @@
                                             <div class="flex items-center">
                                                 <input id="3_sumberDana" name="f1201" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="3" />
+                                                    value="3" {{ old('f1201')==3?'checked':'' }} />
                                                 <label for="3_sumberDana"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Beasiswa
                                                     BIDIKMISI
@@ -563,7 +577,7 @@
                                             <div class="flex items-center">
                                                 <input id="4_sumberDana" name="f1201" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="4" />
+                                                    value="4" {{ old('f1201')==4?'checked':'' }} />
                                                 <label for="4_sumberDana"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Beasiswa PPA
                                                     (4)
@@ -572,7 +586,7 @@
                                             <div class="flex items-center">
                                                 <input id="5_sumberDana" name="f1201" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="5" />
+                                                    value="5" {{ old('f1201')==5?'checked':'' }} />
                                                 <label for="5_sumberDana"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Beasiswa
                                                     AFIRMASI
@@ -582,7 +596,7 @@
                                             <div class="flex items-center">
                                                 <input id="6_sumberDana" name="f1201" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="6" />
+                                                    value="6" {{ old('f1201')==6?'checked':'' }} />
                                                 <label for="6_sumberDana"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Beasiswa
                                                     Perusahaan/Swasta (6)
@@ -591,7 +605,7 @@
                                             <div class="flex items-center">
                                                 <input id="7_sumberDana" name="f1201" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="7" />
+                                                    value="7" {{ old('f1201')==7?'checked':'' }} />
                                                 <label for="7_sumberDana"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Lainnya,
                                                     tuliskan
@@ -599,6 +613,7 @@
                                                 </label>
                                             </div>
                                             <input type="text" name="f1202" id="f1202" placeholder="f1202"
+                                                value="{{ old('f1202')??'' }}"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
 
                                             @error('f1201')
@@ -612,6 +627,7 @@
                                             </span>
                                             @enderror
                                         </div>
+
                                         <li class="mb-4 @error('f14') text-red-500 @enderror">
                                             Seberapa erat hubungan bidang studi dengan pekerjaan
                                             Anda? * (f14)
@@ -620,7 +636,7 @@
                                             <div class="flex items-center">
                                                 <input id="1_hubunganBidangStudi" name="f14" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="1" />
+                                                    value="1" {{ old('f14')==1?'checked':'' }} />
                                                 <label for="1_hubunganBidangStudi"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Sangat Erat
                                                     (1)
@@ -629,7 +645,7 @@
                                             <div class="flex items-center">
                                                 <input id="2_hubunganBidangStudi" name="f14" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="2" />
+                                                    value="2" {{ old('f14')==2?'checked':'' }} />
                                                 <label for="2_hubunganBidangStudi"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Erat
                                                     (2)
@@ -638,7 +654,7 @@
                                             <div class="flex items-center">
                                                 <input id="3_hubunganBidangStudi" name="f14" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="3" />
+                                                    value="3" {{ old('f14')==3?'checked':'' }} />
                                                 <label for="3_hubunganBidangStudi"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Cukup Erat
                                                     (3)
@@ -647,7 +663,7 @@
                                             <div class="flex items-center">
                                                 <input id="4_hubunganBidangStudi" name="f14" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="4" />
+                                                    value="4" {{ old('f14')==4?'checked':'' }} />
                                                 <label for="4_hubunganBidangStudi"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Kurang Erat
                                                     (4)
@@ -656,7 +672,7 @@
                                             <div class="flex items-center">
                                                 <input id="5_hubunganBidangStudi" name="f14" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="5" />
+                                                    value="5" {{ old('f14')==5?'checked':'' }} />
                                                 <label for="5_hubunganBidangStudi"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Tidak Sama
                                                     Sekali
@@ -670,7 +686,8 @@
                                             </span>
                                             @enderror
                                         </div>
-                                        <li class="mb-4 @error('f14') text-red-500 @enderror">
+
+                                        <li class="mb-4 @error('f15') text-red-500 @enderror">
                                             Tingkat pendidikan apa yang paling tepat/sesuai untuk
                                             pekerjaan anda saat ini? * (f15)
                                         </li>
@@ -678,7 +695,7 @@
                                             <div class="flex items-center">
                                                 <input id="1_kesesuaianTingkatPendidikan" name="f15" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="1" />
+                                                    value="1" {{ old('f15')==1?'checked':'' }} />
                                                 <label for="1_kesesuaianTingkatPendidikan"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Setingkat Lebih
                                                     Tinggi (1)
@@ -687,7 +704,7 @@
                                             <div class="flex items-center">
                                                 <input id="2_kesesuaianTingkatPendidikan" name="f15" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="2" />
+                                                    value="2" {{ old('f15')==2?'checked':'' }} />
                                                 <label for="2_kesesuaianTingkatPendidikan"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Tingkat yang
                                                     Sama
@@ -697,7 +714,7 @@
                                             <div class="flex items-center">
                                                 <input id="3_kesesuaianTingkatPendidikan" name="f15" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="3" />
+                                                    value="3" {{ old('f15')==3?'checked':'' }} />
                                                 <label for="3_kesesuaianTingkatPendidikan"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Setingkat Lebih
                                                     Rendah (3)
@@ -706,7 +723,7 @@
                                             <div class="flex items-center">
                                                 <input id="4_kesesuaianTingkatPendidikan" name="f15" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="4" />
+                                                    value="4" {{ old('f15')==4?'checked':'' }} />
                                                 <label for="4_kesesuaianTingkatPendidikan"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Tidak Perlu
                                                     Pendidikan Tinggi (4)
@@ -719,6 +736,7 @@
                                             </span>
                                             @enderror
                                         </div>
+
                                         <li
                                             class="mb-4 @if($errors->has('f1761')||$errors->has('f1762')||$errors->has('f1763')||$errors->has('f1764')||$errors->has('f1765')||$errors->has('f1766')||$errors->has('f1767')||$errors->has('f1768')||$errors->has('f1769')||$errors->has('f1770')||$errors->has('f1771')||$errors->has('f1772')||$errors->has('f1773')||$errors->has('f1774')) text-red-500 @endif">
                                             Pada saat lulus, pada tingkat mana kompetensi di bawah
@@ -766,27 +784,27 @@
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_etika" name="f1761" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="1" />
+                                                                value="1" {{ old('f1761')==1?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="1_etika" name="f1761" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="2" />
+                                                                value="2" {{ old('f1761')==2?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="2_etika" name="f1761" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="3" />
+                                                                value="3" {{ old('f1761')==3?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="3_etika" name="f1761" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="4" />
+                                                                value="4" {{ old('f1761')==4?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="4_etika" name="f1761" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="5" />
+                                                                value="5" {{ old('f1761')==5?'checked':'' }} />
                                                         </td>
                                                         <td
                                                             class="px-[0.2rem] lg:px-3 py-3.5 text-[0.7rem] lg:text-[1rem] text-center">
@@ -805,54 +823,54 @@
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_etika2" name="f1762" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="1" />
+                                                                value="1" {{ old('f1762')==1?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="1_etika2" name="f1762" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="2" />
+                                                                value="2" {{ old('f1762')==2?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="2_etika2" name="f1762" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="3" />
+                                                                value="3" {{ old('f1762')==3?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="3_etika2" name="f1762" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="4" />
+                                                                value="4" {{ old('f1762')==4?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="4_etika2" name="f1762" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="5" />
+                                                                value="5" {{ old('f1762')==5?'checked':'' }} />
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_bidangIlmu" name="f1763" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="1" />
+                                                                value="1" {{ old('f1763')==1?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="1_bidangIlmu" name="f1763" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="2" />
+                                                                value="2" {{ old('f1763')==2?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="2_bidangIlmu" name="f1763" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="3" />
+                                                                value="3" {{ old('f1763')==3?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="3_bidangIlmu" name="f1763" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="4" />
+                                                                value="4" {{ old('f1763')==4?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="4_bidangIlmu" name="f1763" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="5" />
+                                                                value="5" {{ old('f1763')==5?'checked':'' }} />
                                                         </td>
                                                         <td
                                                             class="px-[0.2rem] lg:px-3 py-3.5 text-[0.7rem] lg:text-[1rem] text-center">
@@ -872,54 +890,54 @@
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_bidangIlmu2" name="f1764" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="1" />
+                                                                value="1" {{ old('f1764')==1?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="1_bidangIlmu2" name="f1764" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="2" />
+                                                                value="2" {{ old('f1764')==2?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="2_bidangIlmu2" name="f1764" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="3" />
+                                                                value="3" {{ old('f1764')==3?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="3_bidangIlmu2" name="f1764" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="4" />
+                                                                value="4" {{ old('f1764')==4?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="4_bidangIlmu2" name="f1764" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="5" />
+                                                                value="5" {{ old('f1764')==5?'checked':'' }} />
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_bahasaInggris" name="f1765" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="1" />
+                                                                value="1" {{ old('f1765')==1?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="1_bahasaInggris" name="f1765" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="2" />
+                                                                value="2" {{ old('f1765')==2?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="2_bahasaInggris" name="f1765" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="3" />
+                                                                value="3" {{ old('f1765')==3?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="3_bahasaInggris" name="f1765" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="4" />
+                                                                value="4" {{ old('f1765')==4?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="4_bahasaInggris" name="f1765" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="5" />
+                                                                value="5" {{ old('f1765')==5?'checked':'' }} />
                                                         </td>
                                                         <td
                                                             class="px-[0.2rem] lg:px-3 py-3.5 text-[0.7rem] lg:text-[1rem] text-center">
@@ -938,54 +956,54 @@
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_bahasaInggris2" name="f1766" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="1" />
+                                                                value="1" {{ old('f1766')==1?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="1_bahasaInggris2" name="f1766" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="2" />
+                                                                value="2" {{ old('f1766')==2?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="2_bahasaInggris2" name="f1766" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="3" />
+                                                                value="3" {{ old('f1766')==3?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="3_bahasaInggris2" name="f1766" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="4" />
+                                                                value="4" {{ old('f1766')==4?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="4_bahasaInggris2" name="f1766" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="5" />
+                                                                value="5" {{ old('f1766')==5?'checked':'' }} />
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_teknologiInformasi" name="f1767" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="1" />
+                                                                value="1" {{ old('f1767')==1?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="1_teknologiInformasi" name="f1767" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="2" />
+                                                                value="2" {{ old('f1767')==2?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="2_teknologiInformasi" name="f1767" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="3" />
+                                                                value="3" {{ old('f1767')==3?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="3_teknologiInformasi" name="f1767" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="4" />
+                                                                value="4" {{ old('f1767')==4?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="4_teknologiInformasi" name="f1767" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="5" />
+                                                                value="5" {{ old('f1767')==5?'checked':'' }} />
                                                         </td>
                                                         <td
                                                             class="px-[0.2rem] lg:px-3 py-3.5 text-[0.7rem] lg:text-[1rem] text-center">
@@ -1004,54 +1022,54 @@
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_teknologiInformasi2" name="f1768" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="1" />
+                                                                value="1" {{ old('f1768')==1?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="1_teknologiInformasi2" name="f1768" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="2" />
+                                                                value="2" {{ old('f1768')==2?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="2_teknologiInformasi2" name="f1768" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="3" />
+                                                                value="3" {{ old('f1768')==3?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="3_teknologiInformasi2" name="f1768" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="4" />
+                                                                value="4" {{ old('f1768')==4?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="4_teknologiInformasi2" name="f1768" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="5" />
+                                                                value="5" {{ old('f1768')==5?'checked':'' }} />
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_komunikasi" name="f1769" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="1" />
+                                                                value="1" {{ old('f1769')==1?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="1_komunikasi" name="f1769" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="2" />
+                                                                value="2" {{ old('f1769')==2?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="2_komunikasi" name="f1769" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="3" />
+                                                                value="3" {{ old('f1769')==3?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="3_komunikasi" name="f1769" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="4" />
+                                                                value="4" {{ old('f1769')==4?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="4_komunikasi" name="f1769" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="5" />
+                                                                value="5" {{ old('f1769')==5?'checked':'' }} />
                                                         </td>
                                                         <td
                                                             class="px-[0.2rem] lg:px-3 py-3.5 text-[0.7rem] lg:text-[1rem] text-center">
@@ -1070,54 +1088,54 @@
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_komunikasi2" name="f1770" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="1" />
+                                                                value="1" {{ old('f1770')==1?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="1_komunikasi2" name="f1770" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="2" />
+                                                                value="2" {{ old('f1770')==2?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="2_komunikasi2" name="f1770" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="3" />
+                                                                value="3" {{ old('f1770')==3?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="3_komunikasi2" name="f1770" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="4" />
+                                                                value="4" {{ old('f1770')==4?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="4_komunikasi2" name="f1770" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="5" />
+                                                                value="5" {{ old('f1770')==5?'checked':'' }} />
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_teamWork" name="f1771" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="1" />
+                                                                value="1" {{ old('f1771')==1?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="1_teamWork" name="f1771" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="2" />
+                                                                value="2" {{ old('f1771')==2?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="2_teamWork" name="f1771" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="3" />
+                                                                value="3" {{ old('f1771')==3?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="3_teamWork" name="f1771" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="4" />
+                                                                value="4" {{ old('f1771')==4?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="4_teamWork" name="f1771" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="5" />
+                                                                value="5" {{ old('f1771')==5?'checked':'' }} />
                                                         </td>
                                                         <td
                                                             class="px-[0.2rem] lg:px-3 py-3.5 text-[0.7rem] lg:text-[1rem] text-center">
@@ -1136,54 +1154,54 @@
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_teamWork2" name="f1772" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="1" />
+                                                                value="1" {{ old('f1772')==1?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="1_teamWork2" name="f1772" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="2" />
+                                                                value="2" {{ old('f1772')==2?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="2_teamWork2" name="f1772" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="3" />
+                                                                value="3" {{ old('f1772')==3?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="3_teamWork2" name="f1772" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="4" />
+                                                                value="4" {{ old('f1772')==4?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="4_teamWork2" name="f1772" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="5" />
+                                                                value="5" {{ old('f1772')==5?'checked':'' }} />
                                                         </td>
                                                     </tr>
                                                     <tr>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_pengembangan" name="f1773" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="1" />
+                                                                value="1" {{ old('f1773')==1?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="1_pengembangan" name="f1773" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="2" />
+                                                                value="2" {{ old('f1773')==2?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="2_pengembangan" name="f1773" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="3" />
+                                                                value="3" {{ old('f1773')==3?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="3_pengembangan" name="f1773" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="4" />
+                                                                value="4" {{ old('f1773')==4?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="4_pengembangan" name="f1773" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="5" />
+                                                                value="5" {{ old('f1773')==5?'checked':'' }} />
                                                         </td>
                                                         <td
                                                             class="px-[0.2rem] lg:px-3 py-3.5 text-[0.7rem] lg:text-[1rem] text-center">
@@ -1202,32 +1220,33 @@
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="0_pengembangan2" name="f1774" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="1" />
+                                                                value="1" {{ old('f1774')==1?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="1_pengembangan2" name="f1774" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="2" />
+                                                                value="2" {{ old('f1774')==2?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="2_pengembangan2" name="f1774" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="3" />
+                                                                value="3" {{ old('f1774')==3?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="3_pengembangan2" name="f1774" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="4" />
+                                                                value="4" {{ old('f1774')==4?'checked':'' }} />
                                                         </td>
                                                         <td class="px-[0.2rem] lg:px-3 py-3.5">
                                                             <input id="4_pengembangan2" name="f1774" type="radio"
                                                                 class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                                value="5" />
+                                                                value="5" {{ old('f1774')==5?'checked':'' }} />
                                                         </td>
                                                     </tr>
                                                 </table>
                                             </div>
                                         </div>
+
                                         <li
                                             class="mb-4 @if($errors->has('f21')||$errors->has('f22')||$errors->has('f23')||$errors->has('f24')||$errors->has('f25')||$errors->has('f26')||$errors->has('f27')) text-red-500 @endif">
                                             Menurut anda seberapa besar penekanan pada metode
@@ -1242,7 +1261,7 @@
                                                     <div class="flex items-center">
                                                         <input id="1_perkuliahan" name="f21" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="1" />
+                                                            value="1" {{ old('f21')==1?'checked':'' }} />
                                                         <label for="1_perkuliahan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Sangat
                                                             Besar (1)
@@ -1251,7 +1270,7 @@
                                                     <div class="flex items-center">
                                                         <input id="2_perkuliahan" name="f21" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="2" />
+                                                            value="2" {{ old('f21')==2?'checked':'' }} />
                                                         <label for="2_perkuliahan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Besar
                                                             (2)
@@ -1260,7 +1279,7 @@
                                                     <div class="flex items-center">
                                                         <input id="3_perkuliahan" name="f21" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="3" />
+                                                            value="3" {{ old('f21')==3?'checked':'' }} />
                                                         <label for="3_perkuliahan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Cukup
                                                             Besar
@@ -1270,7 +1289,7 @@
                                                     <div class="flex items-center">
                                                         <input id="4_perkuliahan" name="f21" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="4" />
+                                                            value="4" {{ old('f21')==4?'checked':'' }} />
                                                         <label for="4_perkuliahan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Kurang
                                                             Besar (4)
@@ -1279,7 +1298,7 @@
                                                     <div class="flex items-center">
                                                         <input id="5_perkuliahan" name="f21" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="5" />
+                                                            value="5" {{ old('f21')==5?'checked':'' }} />
                                                         <label for="5_perkuliahan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                             Sama
@@ -1300,7 +1319,7 @@
                                                     <div class="flex items-center">
                                                         <input id="1_demontrasi" name="f22" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="1" />
+                                                            value="1" {{ old('f22')==1?'checked':'' }} />
                                                         <label for="1_demontrasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Sangat
                                                             Besar (1)
@@ -1309,7 +1328,7 @@
                                                     <div class="flex items-center">
                                                         <input id="2_demontrasi" name="f22" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="2" />
+                                                            value="2" {{ old('f22')==2?'checked':'' }} />
                                                         <label for="2_demontrasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Besar
                                                             (2)
@@ -1318,7 +1337,7 @@
                                                     <div class="flex items-center">
                                                         <input id="3_demontrasi" name="f22" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="3" />
+                                                            value="3" {{ old('f22')==3?'checked':'' }} />
                                                         <label for="3_demontrasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Cukup
                                                             Besar
@@ -1328,7 +1347,7 @@
                                                     <div class="flex items-center">
                                                         <input id="4_demontrasi" name="f22" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="4" />
+                                                            value="4" {{ old('f22')==4?'checked':'' }} />
                                                         <label for="4_demontrasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Kurang
                                                             Besar (4)
@@ -1337,7 +1356,7 @@
                                                     <div class="flex items-center">
                                                         <input id="5_demontrasi" name="f22" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="5" />
+                                                            value="5" {{ old('f22')==5?'checked':'' }} />
                                                         <label for="5_demontrasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                             Sama
@@ -1358,7 +1377,7 @@
                                                     <div class="flex items-center">
                                                         <input id="1_partisipasi" name="f23" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="1" />
+                                                            value="1" {{ old('f23')==1?'checked':'' }} />
                                                         <label for="1_partisipasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Sangat
                                                             Besar (1)
@@ -1367,7 +1386,7 @@
                                                     <div class="flex items-center">
                                                         <input id="2_partisipasi" name="f23" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="2" />
+                                                            value="2" {{ old('f23')==2?'checked':'' }} />
                                                         <label for="2_partisipasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Besar
                                                             (2)
@@ -1376,7 +1395,7 @@
                                                     <div class="flex items-center">
                                                         <input id="3_partisipasi" name="f23" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="3" />
+                                                            value="3" {{ old('f23')==3?'checked':'' }} />
                                                         <label for="3_partisipasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Cukup
                                                             Besar
@@ -1386,7 +1405,7 @@
                                                     <div class="flex items-center">
                                                         <input id="4_partisipasi" name="f23" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="4" />
+                                                            value="4" {{ old('f23')==4?'checked':'' }} />
                                                         <label for="4_partisipasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Kurang
                                                             Besar (4)
@@ -1395,7 +1414,7 @@
                                                     <div class="flex items-center">
                                                         <input id="5_partisipasi" name="f23" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="5" />
+                                                            value="5" {{ old('f23')==5?'checked':'' }} />
                                                         <label for="5_partisipasi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                             Sama
@@ -1416,7 +1435,7 @@
                                                     <div class="flex items-center">
                                                         <input id="1_magang" name="f24" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="1" />
+                                                            value="1" {{ old('f24')==1?'checked':'' }} />
                                                         <label for="1_magang"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Sangat
                                                             Besar (1)
@@ -1425,7 +1444,7 @@
                                                     <div class="flex items-center">
                                                         <input id="2_magang" name="f24" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="2" />
+                                                            value="2" {{ old('f24')==2?'checked':'' }} />
                                                         <label for="2_magang"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Besar
                                                             (2)
@@ -1434,7 +1453,7 @@
                                                     <div class="flex items-center">
                                                         <input id="3_magang" name="f24" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="3" />
+                                                            value="3" {{ old('f24')==3?'checked':'' }} />
                                                         <label for="3_magang"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Cukup
                                                             Besar
@@ -1444,7 +1463,7 @@
                                                     <div class="flex items-center">
                                                         <input id="4_magang" name="f24" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="4" />
+                                                            value="4" {{ old('f24')==4?'checked':'' }} />
                                                         <label for="4_magang"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Kurang
                                                             Besar (4)
@@ -1453,7 +1472,7 @@
                                                     <div class="flex items-center">
                                                         <input id="5_magang" name="f24" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="5" />
+                                                            value="5" {{ old('f24')==5?'checked':'' }} />
                                                         <label for="5_magang"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                             Sama
@@ -1474,7 +1493,7 @@
                                                     <div class="flex items-center">
                                                         <input id="1_praktikum" name="f25" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="1" />
+                                                            value="1" {{ old('f25')==1?'checked':'' }} />
                                                         <label for="1_praktikum"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Sangat
                                                             Besar (1)
@@ -1483,7 +1502,7 @@
                                                     <div class="flex items-center">
                                                         <input id="2_praktikum" name="f25" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="2" />
+                                                            value="2" {{ old('f25')==2?'checked':'' }} />
                                                         <label for="2_praktikum"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Besar
                                                             (2)
@@ -1492,7 +1511,7 @@
                                                     <div class="flex items-center">
                                                         <input id="3_praktikum" name="f25" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="3" />
+                                                            value="3" {{ old('f25')==3?'checked':'' }} />
                                                         <label for="3_praktikum"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Cukup
                                                             Besar
@@ -1502,7 +1521,7 @@
                                                     <div class="flex items-center">
                                                         <input id="4_praktikum" name="f25" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="4" />
+                                                            value="4" {{ old('f25')==4?'checked':'' }} />
                                                         <label for="4_praktikum"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Kurang
                                                             Besar (4)
@@ -1511,7 +1530,7 @@
                                                     <div class="flex items-center">
                                                         <input id="5_praktikum" name="f25" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="5" />
+                                                            value="5" {{ old('f25')==5?'checked':'' }} />
                                                         <label for="5_praktikum"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                             Sama
@@ -1533,7 +1552,7 @@
                                                     <div class="flex items-center">
                                                         <input id="1_kerjaLapangan" name="f26" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="1" />
+                                                            value="1" {{ old('f26')==1?'checked':'' }} />
                                                         <label for="1_kerjaLapangan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Sangat
                                                             Besar (1)
@@ -1542,7 +1561,7 @@
                                                     <div class="flex items-center">
                                                         <input id="2_kerjaLapangan" name="f26" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="2" />
+                                                            value="2" {{ old('f26')==2?'checked':'' }} />
                                                         <label for="2_kerjaLapangan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Besar
                                                             (2)
@@ -1551,7 +1570,7 @@
                                                     <div class="flex items-center">
                                                         <input id="3_kerjaLapangan" name="f26" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="3" />
+                                                            value="3" {{ old('f26')==3?'checked':'' }} />
                                                         <label for="3_kerjaLapangan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Cukup
                                                             Besar
@@ -1561,7 +1580,7 @@
                                                     <div class="flex items-center">
                                                         <input id="4_kerjaLapangan" name="f26" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="4" />
+                                                            value="4" {{ old('f26')==4?'checked':'' }} />
                                                         <label for="4_kerjaLapangan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Kurang
                                                             Besar (4)
@@ -1570,7 +1589,7 @@
                                                     <div class="flex items-center">
                                                         <input id="5_kerjaLapangan" name="f26" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="5" />
+                                                            value="5" {{ old('f26')==5?'checked':'' }} />
                                                         <label for="5_kerjaLapangan"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                             Sama
@@ -1591,7 +1610,7 @@
                                                     <div class="flex items-center">
                                                         <input id="1_diskusi" name="f27" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="1" />
+                                                            value="1" {{ old('f27')==1?'checked':'' }} />
                                                         <label for="1_diskusi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Sangat
                                                             Besar (1)
@@ -1600,7 +1619,7 @@
                                                     <div class="flex items-center">
                                                         <input id="2_diskusi" name="f27" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="2" />
+                                                            value="2" {{ old('f27')==2?'checked':'' }} />
                                                         <label for="2_diskusi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Besar
                                                             (2)
@@ -1609,7 +1628,7 @@
                                                     <div class="flex items-center">
                                                         <input id="3_diskusi" name="f27" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="3" />
+                                                            value="3" {{ old('f27')==3?'checked':'' }} />
                                                         <label for="3_diskusi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Cukup
                                                             Besar
@@ -1619,7 +1638,7 @@
                                                     <div class="flex items-center">
                                                         <input id="4_diskusi" name="f27" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="4" />
+                                                            value="4" {{ old('f27')==4?'checked':'' }} />
                                                         <label for="4_diskusi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Kurang
                                                             Besar (4)
@@ -1628,7 +1647,7 @@
                                                     <div class="flex items-center">
                                                         <input id="5_diskusi" name="f27" type="radio"
                                                             class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                            value="5" />
+                                                            value="5" {{ old('f27')==5?'checked':'' }} />
                                                         <label for="5_diskusi"
                                                             class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                             Sama
@@ -1643,6 +1662,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <li class="mb-4">
                                             Kapan anda mulai mencari pekerjaan? Mohon pekerjaan
                                             sambilan tidak dimasukkan
@@ -1651,10 +1671,11 @@
                                             <div class="flex items-center">
                                                 <input id="sebelum" name="f301" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="1" />(1)(f301)
+                                                    value="1" {{ old('f301')==1?'checked':'' }} />(1)(f301)
                                                 <label for="sebelum"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Kira-kira
                                                     <input type="number" name="f302" placeholder="f302"
+                                                        value="{{ old('f302')??'' }}"
                                                         class="focus:ring-indigo-500 h-10 w-20 text-indigo-600 text-sm border-gray-300" />
                                                     bulan sebelum lulus
                                                 </label>
@@ -1667,10 +1688,11 @@
                                             <div class="flex items-center">
                                                 <input id="sesudah" name="f301" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="2" />(2)(f301)
+                                                    value="2" {{ old('f301')==2?'checked':'' }} />(2)(f301)
                                                 <label for="sesudah"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Kira-kira
                                                     <input type="number" name="f303" placeholder="f303"
+                                                        value="{{ old('f303') ?? '' }}"
                                                         class="focus:ring-indigo-500 h-10 w-20 text-indigo-600 text-sm border-gray-300" />
                                                     bulan sesudah lulus
                                                 </label>
@@ -1683,7 +1705,7 @@
                                             <div class="flex items-center">
                                                 <input id="tidak" name="f301" type="radio"
                                                     class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
-                                                    value="3" />(3)(f301)
+                                                    value="3" {{ old('f301')==3?'checked':'' }} />(3)(f301)
                                                 <label for="tidak"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Saya
                                                     tidak
@@ -1697,6 +1719,7 @@
                                             </span>
                                             @enderror
                                         </div>
+
                                         <li class="mb-4">
                                             Bagaimana anda mencari pekerjaan tersebut? Jawaban
                                             bisa lebih dari satu
@@ -1892,7 +1915,8 @@
                                             </span>
                                             @enderror
                                         </div>
-                                        <li class="mb-4">
+
+                                        <li class="mb-4 @error('f6') text-red-500 @enderror">
                                             Berapa perusahaan/instansi/institusi yang sudah anda
                                             lamar (lewat surat atau e-mail) sebelum anda memeroleh
                                             pekerjaan pertama? (f6)
@@ -1901,6 +1925,7 @@
                                             <div class="flex flex-row h-full">
                                                 <div class="w-1/2">
                                                     <input type="number" max="100" name="f6" id="f6"
+                                                        value="{{ old('f6')??'' }}"
                                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                 </div>
                                                 <p class="my-auto ml-2">
@@ -1913,6 +1938,7 @@
                                                 @enderror
                                             </div>
                                         </div>
+
                                         <li class="mb-4">
                                             Berapa banyak perusahaan/instansi/institusi yang
                                             merespons lamaran anda? (f7)
@@ -1921,6 +1947,7 @@
                                             <div class="flex flex-row h-full">
                                                 <div class="w-1/2">
                                                     <input type="number" name="f7" max="100" id="f7"
+                                                        value="{{ old('f7')??'' }}"
                                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                 </div>
                                                 <p class="my-auto ml-2">
@@ -1941,6 +1968,7 @@
                                             <div class="flex flex-row h-full">
                                                 <div class="w-1/2">
                                                     <input type="number" name="f7a" max="100" id="f7a"
+                                                        value="{{ old('f7a')??'' }}"
                                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                                 </div>
                                                 <p class="my-auto ml-2">
@@ -1948,14 +1976,16 @@
                                                 </p>
                                             </div>
                                         </div>
-                                        <li class="mb-4">
+
+                                        <li class="mb-4 @error('f1001') text-red-500 @enderror">
                                             Apakah anda aktif mencari pekerjaan dalam 4 minggu
                                             terakhir? Pilihlah satu jawaban (f1001)
                                         </li>
                                         <div class="space-y-4 mb-4">
                                             <div class="flex items-center">
                                                 <input id="1_activeSearch" name="f1001" value="1" type="radio"
-                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
+                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                                    {{ old('f1001')==1?'checked':'' }} />
                                                 <label for="1_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Tidak
                                                     (1)
@@ -1963,7 +1993,8 @@
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="2_activeSearch" name="f1001" value="2" type="radio"
-                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
+                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                                    {{ old('f1001')==2?'checked':'' }} />
                                                 <label for="2_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Tidak, tapi
                                                     saya
@@ -1973,7 +2004,8 @@
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="3_activeSearch" name="f1001" value="3" type="radio"
-                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
+                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                                    {{ old('f1001')==3?'checked':'' }} />
                                                 <label for="3_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Ya, saya akan
                                                     mulai
@@ -1983,7 +2015,8 @@
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="4_activeSearch" name="f1001" value="4" type="radio"
-                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
+                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                                    {{ old('f1001')==4?'checked':'' }} />
                                                 <label for="4_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Ya, tapi saya
                                                     belum
@@ -1993,13 +2026,15 @@
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="5_activeSearch" name="f1001" value="5" type="radio"
-                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300" />
+                                                    class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                                                    {{ old('f1001')==5?'checked':'' }} />
                                                 <label for="5_activeSearch"
                                                     class="ml-3 block text-sm font-medium text-gray-700">Lainnya
                                                     (5)
                                                 </label>
                                             </div>
                                             <input type="text" name="f1002" id="f1002" placeholder="f1002"
+                                                value="{{ old('f1002')??'' }}"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('f1001')
                                             <span class="ml-1 block text-sm font-medium text-pink-500">
@@ -2012,6 +2047,7 @@
                                             </span>
                                             @enderror
                                         </div>
+
                                         <li class="mb-4">
                                             Jika menurut anda pekerjaan anda saat ini tidak sesuai
                                             dengan : pendidikan anda, mengapa anda mengambilnya?
@@ -2374,7 +2410,7 @@
         });
 </script>
 @endpush
-@if(Session::get('success'))
+@if(Session::get('success') || Session::get('errors'))
 @push('addon-after-script')
 <script>
     setInterval(() => {
