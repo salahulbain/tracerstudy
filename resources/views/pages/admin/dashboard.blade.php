@@ -165,7 +165,7 @@
     };
 
     let optionsVisitorsProfile = {
-        series: [70, 30, 30, 30, 30],
+        series: [{{ $kerja_full }},{{ $belum_kerja }},{{ $wiraswasta }},{{ $lanjut_pendidikan }},{{ $tidak_kerja }},],
         labels: ["Bekerja Full/Part Time", "Belum Mungkin Bekerja", "Wiraswasta", "Melanjutkan Pendidikan","Sedang Mencari Kerja"],
         colors: ["#435ebe", "#dc3545", "#fd7e14", "#20c997", "#ffc107"],
         chart: { type: "donut", width: "100%", height: "350px" },
