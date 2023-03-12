@@ -70,8 +70,8 @@
                         @endif
                     </a>
                 </li>
-                <li class="sidebar-item">
-                    <a href="#" class="sidebar-link">
+                <li class="sidebar-item {{ Request::is('admin/laporan*') ? 'active' : '' }}">
+                    <a href="{{ route('laporan.index') }}" class="sidebar-link">
                         <i class="bi bi-printer-fill"></i>
                         @if (Auth::user()->role == "ADMIN")
                         <span>Cetak Laporan</span>

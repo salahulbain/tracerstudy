@@ -25,7 +25,7 @@ return new class extends Migration
             $table->bigInteger('nik');
             $table->bigInteger('npwp')->nullable();
             $table->string('tempat_lahir')->nullable();
-            $table->integer('tanggal_lahir')->nullable();
+            $table->date('tanggal_lahir')->nullable();
             $table->text('alamat')->nullable();
             $table->softDeletes();
             $table->timestamps();
