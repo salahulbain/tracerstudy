@@ -17,7 +17,7 @@ class LaporanController extends Controller
         $user   = DataMahasiswa::findOrFail(Auth::user()->user_id);
         $finish = Kuisioner::where('nimhsmsmh', $user->npm)->count();
         if ($finish < 1)
-            return redirect()->route('kuisioner.index')->with('errors', 'Anda belum isi survey, silahkan isikan survey terlebih dahulu');
+            return redirect()->route('kuisioner.index')->with('error', 'Anda belum isi survey, silahkan isikan survey terlebih dahulu');
         else
             return view('pages.laporan.index');
     }

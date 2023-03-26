@@ -13,7 +13,8 @@
 <div class="page-content">
     <section class="row" style="min-height: 80vh;">
         <div class="col-12">
-            @if ($message = Session::get('success') || $message = Session::get('errors'))
+            @if ($message = Session::get('success') ?? ($message = Session::get('errors') ?? $message =
+            Session::get('error')))
             <div class="position-fixed top-0 end-0 p-3" style="z-index: 11">
                 <div class="toast show fade align-items-center {{ Session::get('success') ? 'text-bg-success' : 'text-bg-danger' }} border-0"
                     role="alert" aria-live="polite" aria-atomic="true">
@@ -2410,7 +2411,7 @@
         });
 </script>
 @endpush
-@if(Session::get('success') || Session::get('errors'))
+@if(Session::get('success') || Session::get('errors') || Session::get('error'))
 @push('addon-after-script')
 <script>
     setInterval(() => {
