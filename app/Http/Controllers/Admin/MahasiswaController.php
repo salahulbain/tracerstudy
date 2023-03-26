@@ -12,8 +12,10 @@ use Illuminate\Support\Facades\Auth;
 use DataTables;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
+use Maatwebsite\Excel\Validators\ValidationException;
 
 class MahasiswaController extends Controller
 {
@@ -150,6 +152,14 @@ class MahasiswaController extends Controller
         try {
             Excel::import(new DataMahasiswaImport, request()->file('data_mahasiswa'));
             return redirect()->route('mahasiswa.index')->with('success', 'Import data berhasil');
+        } catch (ValidationException $e) {
+            $failures = $e->failures();
+            // You can now loop through the failures and get the error messages
+            foreach ($failures as $failure) {
+                $errorMessage[] = 'Row ' . $failure->row() . ': ' . implode(',', $failure->errors());
+                // You can now handle the error message as needed, such as displaying it to the user or logging it
+            }
+            return redirect()->back()->with('error', $errorMessage);
         } catch (\Throwable $th) {
             return redirect()->route('mahasiswa.index')->with('error', $th->getMessage());
         }

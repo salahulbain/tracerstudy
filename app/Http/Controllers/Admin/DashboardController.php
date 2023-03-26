@@ -18,13 +18,13 @@ class DashboardController extends Controller
         $total_belum_isi_survey = $total_mhs - $total_isi_survey;
         $total_prodi            = count($total_prodi);
 
-        $pai  = DB::table('data_mahasiswas')->where('kode_prodi', 13201)->count();
-        $pba  = DB::table('data_mahasiswas')->where('kode_prodi', 26201)->count();
-        $mpi  = DB::table('data_mahasiswas')->where('kode_prodi', 41211)->count();
-        $sas  = DB::table('data_mahasiswas')->where('kode_prodi', 56202)->count();
-        $ekos = DB::table('data_mahasiswas')->where('kode_prodi', 61201)->count();
-        $kpi  = DB::table('data_mahasiswas')->where('kode_prodi', 60404)->count();
-        $pmi  = DB::table('data_mahasiswas')->where('kode_prodi', 84203)->count();
+        $pai  = DB::table('data_mahasiswas')->where('kode_prodi', 86208)->count();
+        $pba  = DB::table('data_mahasiswas')->where('kode_prodi', 88204)->count();
+        $mpi  = DB::table('data_mahasiswas')->where('kode_prodi', 86231)->count();
+        $sas  = DB::table('data_mahasiswas')->where('kode_prodi', 74230)->count();
+        $ekos = DB::table('data_mahasiswas')->where('kode_prodi', 60202)->count();
+        $kpi  = DB::table('data_mahasiswas')->where('kode_prodi', 70233)->count();
+        $pmi  = DB::table('data_mahasiswas')->where('kode_prodi', 70231)->count();
 
         // hitung status mhs
         $kerja_full        = Kuisioner::where('f8', 1)->count();

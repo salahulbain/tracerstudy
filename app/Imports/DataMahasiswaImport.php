@@ -17,7 +17,7 @@ class DataMahasiswaImport implements ToModel, WithHeadingRow, WithUpserts
      */
     public function uniqueBy()
     {
-        return 'npm';
+        return ['npm'];
     }
 
     /**
@@ -44,28 +44,32 @@ class DataMahasiswaImport implements ToModel, WithHeadingRow, WithUpserts
             'unique'   => ':attribute terdeteksi ganda/telah terdaftar',
         ])->validate();
 
-        $data_mahasiswa =  DataMahasiswa::updateOrCreate([
-            'kode_pt'        => $row['kode_pt'],
-            'kode_prodi'     => $row['kode_prodi'],
-            'npm'            => $row['npm'],
-            'nama_mahasiswa' => $row['nama_mahasiswa'],
-            'no_hp'          => $row['no_hp'],
-            'email'          => $row['email'],
-            'tahun_lulus'    => $row['tahun_lulus'],
-            'nik'            => $row['nik'],
-            'npwp'           => $row['npwp'],
-        ]);
+        try {
+            $data_mahasiswa =  DataMahasiswa::updateOrCreate([
+                'kode_pt'        => $row['kode_pt'],
+                'kode_prodi'     => $row['kode_prodi'],
+                'npm'            => $row['npm'],
+                'nama_mahasiswa' => $row['nama_mahasiswa'],
+                'no_hp'          => $row['no_hp'],
+                'email'          => $row['email'],
+                'tahun_lulus'    => $row['tahun_lulus'],
+                'nik'            => $row['nik'],
+                'npwp'           => $row['npwp'],
+            ]);
 
-        User::upsert([
-            'name'     => $data_mahasiswa->nama_mahasiswa,
-            'username' => $data_mahasiswa->npm,
-            'email'    => $data_mahasiswa->email,
-            'password' => Hash::make($data_mahasiswa->npm),
-            'user_id'  => $data_mahasiswa->id,
-            'role'     => 'USER',
-            'avatar'   => 'default.svg',
-        ], ['username', 'email',], ['name', 'user_id']);
+            User::upsert([
+                'name'     => $data_mahasiswa->nama_mahasiswa,
+                'username' => $data_mahasiswa->npm,
+                'email'    => $data_mahasiswa->email,
+                'password' => bcrypt($data_mahasiswa->npm),
+                'user_id'  => $data_mahasiswa->id,
+                'role'     => 'USER',
+                'avatar'   => 'default.svg',
+            ], ['username', 'email',], ['name', 'user_id']);
 
-        return $data_mahasiswa;
+            return $data_mahasiswa;
+        } catch (\Throwable $th) {
+            throw $th->getMessage();
+        }
     }
 }
