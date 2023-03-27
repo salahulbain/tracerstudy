@@ -141,10 +141,14 @@ class KuisionerController extends Controller
                 'digits'      => ':attribute wajib berjumlah :value',
             ]);
 
-            $provinsi = explode('|', $request->f5a1);
-            $kabkota  = explode('|', $request->f5a2);
-            $prov     = $provinsi[1];
-            $kot      = $kabkota[1];
+            if ($request->f5a1 != null) {
+                $provinsi = explode('|', $request->f5a1);
+                $prov     = $provinsi[1];
+                if ($request->f5a2 != null) {
+                    $kabkota  = explode('|', $request->f5a2);
+                    $kot      = $kabkota[1];
+                }
+            }
 
             // cek sudah isi kuisioner.
             $kuisioner_mhs = Kuisioner::where('nimhsmsmh', $request->nimhsmsmh)->first();
@@ -165,8 +169,8 @@ class KuisionerController extends Controller
                     'f502'        => $request->f502,
                     'f505'        => $request->f505,
                     'f506'        => $request->f506,
-                    'f5a1'        => $prov,
-                    'f5a2'        => $kot,
+                    'f5a1'        => $prov ?? '',
+                    'f5a2'        => $kot ?? '',
                     'f1101'       => $request->f1101,
                     'f1102'       => $request->f1102,
                     'f5b'         => $request->f5b,
@@ -255,8 +259,8 @@ class KuisionerController extends Controller
                 $kuisioner_mhs->f502        = $request->f502 ?? 0;
                 $kuisioner_mhs->f505        = $request->f505;
                 $kuisioner_mhs->f506        = $request->f506;
-                $kuisioner_mhs->f5a1        = $prov;
-                $kuisioner_mhs->f5a2        = $kot;
+                $kuisioner_mhs->f5a1        = $prov ?? '';
+                $kuisioner_mhs->f5a2        = $kot ?? '';
                 $kuisioner_mhs->f1101       = $request->f1101;
                 $kuisioner_mhs->f1102       = $request->f1102;
                 $kuisioner_mhs->f5b         = $request->f5b;
