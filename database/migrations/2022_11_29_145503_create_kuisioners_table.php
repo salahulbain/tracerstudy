@@ -37,7 +37,7 @@ return new class extends Migration
             $table->string('f5a2')->nullable(); //Kota/Kabupaten
 
             $table->integer('f1101')->nullable(); //Apa jenis perusahaan/intansi/institusi tempat anda bekerja sekarang?
-            $table->integer('f1102')->nullable(); //Apa jenis perusahaan/intansi/institusi tempat anda bekerja sekarang?
+            $table->string('f1102')->nullable(); //Apa jenis perusahaan/intansi/institusi tempat anda bekerja sekarang?
             $table->string('f5b')->nullable(); //Apa nama perusahaan/kantor tempat Anda bekerja?
             $table->integer('f5c')->nullable(); //Bila berwiraswasta, apa posisi/jabatan Anda saat ini? (Apabila 1 Menjawab [3] wiraswasta) 
             $table->integer('f5d')->nullable(); //Apa tingkat tempat kerja Anda? 
@@ -105,7 +105,7 @@ return new class extends Migration
             $table->integer('f7'); //Berapa banyak perusahaan/instansi/institusi yang merespons lamaran anda? 
             $table->integer('f7a')->nullable(); //Berapa banyak perusahaan/instansi/institusi yang mengundang anda untuk wawancara?  
             $table->integer('f1001')->nullable(); //Apakah anda aktif mencari pekerjaan dalam 4 minggu terakhir? Pilihlah satu jawaban?  
-            $table->integer('f1002')->nullable(); //jika f1001 Lainnya
+            $table->string('f1002')->nullable(); //jika f1001 Lainnya
 
             // Jika menurut anda pekerjaan anda saat ini tidak sesuai dengan : pendidikan anda, mengapa anda mengambilnya? Jawaban bisa lebih dari satu
             $table->integer('f1601')->nullable(); //Pertanyaan tidak sesuai; pekerjaan saya sekarang sudah sesuai dengan pendidikan saya
