@@ -384,7 +384,7 @@
                                             </div>
                                             <input type="text" name="f1102" id="f1102" placeholder="f1102"
                                                 value="{{ old('f1102') ?? '' }}"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block md:w-1/2 w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('f1101')
                                             <span class="ml-1 block text-sm font-medium text-pink-500">
                                                 {{ $message }}
@@ -615,7 +615,7 @@
                                             </div>
                                             <input type="text" name="f1202" id="f1202" placeholder="f1202"
                                                 value="{{ old('f1202')??'' }}"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block md:w-1/2 w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
 
                                             @error('f1201')
                                             <span class="ml-1 block text-sm font-medium text-pink-500">
@@ -755,16 +755,20 @@
                                                         <td colspan="6" class="px-0.5 lg:py-3.5">B</td>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="3" class="px-0.5 lg:px-2 py-3.5">
+                                                        <td colspan="3"
+                                                            class="px-0.5 lg:px-2 py-3.5 md:text-sm text-xs">
                                                             Sangat Rendah
                                                         </td>
-                                                        <td colspan="3" class="px-0.5 lg:px-2 py-3.5">
+                                                        <td colspan="3"
+                                                            class="px-0.5 lg:px-2 py-3.5 md:text-sm text-xs">
                                                             Sangat Tinggi
                                                         </td>
-                                                        <td colspan="3" class="px-0.5 lg:px-2 py-3.5">
+                                                        <td colspan="3"
+                                                            class="px-0.5 lg:px-2 py-3.5 md:text-sm text-xs">
                                                             Sangat Rendah
                                                         </td>
-                                                        <td colspan="3" class="px-0.5 lg:px-2 py-3.5">
+                                                        <td colspan="3"
+                                                            class="px-0.5 lg:px-2 py-3.5 md:text-sm text-xs">
                                                             Sangat Tinggi
                                                         </td>
                                                     </tr>
@@ -1254,7 +1258,7 @@
                                             pembelajaran dibawah ini dilaksanakan di program studi
                                             anda?*
                                         </li>
-                                        <div class="grid grid-cols-2 lg:grid-cols-3 gap-y-4">
+                                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-y-4">
                                             <div>
                                                 <label class="block text-sm font-medium text-gray-700 mb-2">Perkuliahan
                                                     (f21)</label>
@@ -1909,7 +1913,7 @@
                                                 </div>
                                             </div>
                                             <input type="text" name="f4016" id="f4016" placeholder="f4016"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block md:w-1/2 w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('f4016')
                                             <span class="ml-1 block text-sm font-medium text-pink-500">
                                                 {{ $message }}
@@ -1923,8 +1927,8 @@
                                             pekerjaan pertama? (f6)
                                         </li>
                                         <div class="space-y-4 mb-4">
-                                            <div class="flex flex-row h-full">
-                                                <div class="w-1/2">
+                                            <div class="md:flex md:flex-row h-full">
+                                                <div class="md:w-1/2 w-full">
                                                     <input type="number" max="100" name="f6" id="f6"
                                                         value="{{ old('f6')??'' }}"
                                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
@@ -1945,8 +1949,8 @@
                                             merespons lamaran anda? (f7)
                                         </li>
                                         <div class="space-y-4 mb-4">
-                                            <div class="flex flex-row h-full">
-                                                <div class="w-1/2">
+                                            <div class="md:flex md:flex-row h-full">
+                                                <div class="md:w-1/2 w-full">
                                                     <input type="number" name="f7" max="100" id="f7"
                                                         value="{{ old('f7')??'' }}"
                                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
@@ -1966,8 +1970,8 @@
                                             mengundang anda untuk wawancara? (f7a)
                                         </li>
                                         <div class="space-y-4 mb-4">
-                                            <div class="flex flex-row h-full">
-                                                <div class="w-1/2">
+                                            <div class="md:flex md:flex-row h-full">
+                                                <div class="md:w-1/2 w-full">
                                                     <input type="number" name="f7a" max="100" id="f7a"
                                                         value="{{ old('f7a')??'' }}"
                                                         class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
@@ -2036,7 +2040,7 @@
                                             </div>
                                             <input type="text" name="f1002" id="f1002" placeholder="f1002"
                                                 value="{{ old('f1002')??'' }}"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block md:w-1/2 w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('f1001')
                                             <span class="ml-1 block text-sm font-medium text-pink-500">
                                                 {{ $message }}
@@ -2239,7 +2243,7 @@
                                                 </div>
                                             </div>
                                             <input type="text" name="f1614" id="f1614" placeholder="f1614"
-                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-1/2 shadow-sm sm:text-sm border-gray-300 rounded-md" />
+                                                class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block md:w-1/2 w-full shadow-sm sm:text-sm border-gray-300 rounded-md" />
                                             @error('f1614')
                                             <span class="ml-1 block text-sm font-medium text-pink-500">
                                                 {{ $message }}
